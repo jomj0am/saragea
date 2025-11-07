@@ -1,0 +1,71 @@
+{
+  "HomePageV3": {
+    "heroTitle": "Nyumba Yako <primary>Ifuatayo</primary> Inakusubiri.",
+    "heroSubtitle": "Furahia upangaji rahisi na mfumo wetu wa kisasa. Tafuta, simamia, na uishi kwenye eneo lako bora bila usumbufu.",
+    "heroCtaButton": "Tazama Mali",
+    "featuredPropertiesTitle": "Mali Maarufu",
+    "whyChooseUsTitle": "Kwa Nini Utuchague?",
+    "whyChooseUsSubtitle": "Hatukupi tu mahali pa kuishi. Tunatoa mfumo kamili kwa ajili ya maisha ya kisasa, ya starehe, na salama.",
+    "whyChooseUsFeature1Title": "Salama & Uaminifu",
+    "whyChooseUsFeature1Desc": "Data na malipo yako vinalindwa na hatua za usalama za hali ya juu, kuhakikisha amani yako ya akili.",
+    "whyChooseUsFeature2Title": "Malipo Rahisi",
+    "whyChooseUsFeature2Desc": "Lipa kodi yako bila shida ukiwa popote na njia nyingi za malipo mtandaoni, zote zikiwa kwenye dashibodi yako.",
+    "whyChooseUsFeature3Title": "Msaada 24/7",
+    "whyChooseUsFeature3Desc": "Timu yetu ya msaada na matengenezo ipo tayari kukusaidia na shida yoyote wakati wote.",
+    "testimonialsTitle": "Wapangaji Wetu Wanasemaje",
+    "testimonialsSubtitle": "Hadithi za kweli kutoka kwa watu waliopata makazi yao kupitia sisi.",
+    "testimonial1Quote": "Mchakato ulikuwa rahisi sana. Nilipata na kuhamia kwenye nyumba yangu mpya chini ya wiki moja. Usimamizi unajibu haraka sana!",
+    "testimonial1Name": "Asha Juma",
+    "testimonial1Location": "Mpangaji, Masaki Towers",
+    "testimonial2Quote": "Kuweza kulipa kodi na kuripoti matatizo ya matengenezo mtandaoni kumenirahisishia maisha. Ni rahisi sana.",
+    "testimonial2Name": "John Bakari",
+    "testimonial2Location": "Mpangaji, Mbezi Beach Apartments",
+    "testimonial3Quote": "Huduma ya kitaalamu kweli. Majengo yanatunzwa vizuri, na timu inasaidia kila wakati. Ninapendekeza sana.",
+    "testimonial3Name": "Fatima Khamis",
+    "testimonial3Location": "Mpangaji, Upanga Residences",
+    "ctaTitle": "Uko Tayari Kupata Nyumba Yako Mpya?",
+    "ctaSubtitle": "Jiunge na jumuiya yetu ya wapangaji wenye furaha leo. Sura yako mpya ya maisha inaanzia hapa.",
+    "ctaButton": "Anza Sasa",
+    "ShopByLifestyle": {
+      "sectionTitle": "Chagua kwa Mtindo wa Maisha",
+      "sectionSubtitle": "Pata nyumba inayoendana kikamilifu na mtindo wako wa maisha. Tumeandaa machaguo kwa kila hitaji na ndoto.",
+      "oceanfrontLivingTitle": "Maisha ya Ufukweni",
+      "oceanfrontLivingSubtitle": "Amka na sauti ya mawimbi.",
+      "cityHubTitle": "Nyumba za Katikati ya Mji",
+      "cityHubSubtitle": "Ishi katikati ya matukio.",
+      "familyHomesTitle": "Makazi ya Familia",
+      "familyHomesSubtitle": "Nafasi kubwa kwa kila mtu.",
+      "budgetFriendlyTitle": "Bei Nafuu",
+      "budgetFriendlySubtitle": "Starehe bila kuathiri bajeti."
+    },
+    "Interactive3D": {
+      "sectionTitle": "Gundua kwa 3D",
+      "sectionSubtitle": "Pata hisia halisi ya jengo letu kuu. Tumia modeli ya 3D hapa chini kugundua sifa zake.",
+      "propertyTitle": "Villa ya Kisasa Masaki",
+      "propertyDescription": "Jengo la kipekee lenye usanifu wa kuvutia, linalotoa anasa isiyo na kifani na mandhari ya bahari. Hii ni zaidi ya nyumba; ni kauli ya mtindo wa maisha.",
+      "feature1": "Bwawa la Kuogelea la Kibinafsi",
+      "feature2": "Ufikiaji wa Moja kwa Moja Ufukweni",
+      "feature3": "Mfumo wa Nyumba ya Kisasa (Smart Home)",
+      "ctaButton": "Gundua Nyingine Kama Hii"
+    },
+    "InteractiveMap": {
+      "sectionTitle": "Maeneo Yetu",
+      "sectionSubtitle": "Gundua mali zetu zote jijini kwenye ramani moja. Nyumba yako ijayo ni kubonyeza tu."
+    },
+    "RecentlyViewed": {
+      "sectionTitle": "Mali Ulizotazama Hivi Karibuni"
+    }
+  },
+    "ContactPage": {
+    "heroTitle": "Wasiliana Nasi",
+    "heroSubtitle": "Tupo hapa kukusaidia. Iwe una swali kuhusu mali zetu au unahitaji msaada, tuko tayari kukuhudumia.",
+    "detailsTitle": "Taarifa za Mawasiliano",
+    "address": "123 Barabara ya Masaki, Dar es Salaam, Tanzania",
+    "phone1": "+255 784 123 456 (Mauzo na Maswali)",
+    "phone2": "+255 655 654 321 (Msaada)",
+    "email": "info@saragea.co.tz",
+    "formTitle": "Tutumie Ujumbe",
+    "formSubtitle": "Una swali maalum? Jaza fomu hapa chini na timu yetu itakujibu haraka iwezekanavyo."
+  }
+
+}

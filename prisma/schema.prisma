@@ -1,0 +1,314 @@
+// This is your Prisma schema file.
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum TicketStatus {
+    OPEN
+    IN_PROGRESS
+    RESOLVED
+    CLOSED
+}
+
+model MaintenanceTicket {
+    id          String       @id @default(cuid())
+    title       String
+    description String       @db.Text
+    status      TicketStatus @default(OPEN)
+    priority    String? // e.g., "Low", "Medium", "High"
+    imageUrl    String? // Picha ya ushahidi
+
+    tenantId String
+    tenant   User   @relation(fields: [tenantId], references: [id])
+
+    roomId String
+    room   Room   @relation(fields: [roomId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    vendorId  String?
+    vendor    Vendor?  @relation(fields: [vendorId], references: [id])
+}
+
+model User {
+    id                  String              @id @default(cuid())
+    name                String?
+    email               String?             @unique
+    emailVerified       DateTime?
+    image               String?
+    password            String? // We will hash this
+    role                Role                @default(TENANT)
+    accounts            Account[]
+    sessions            Session[]
+    leases              Lease[] // A user can have multiple leases over time
+    reservation         Reservation[]
+    createdAt           DateTime            @default(now())
+    updatedAt           DateTime            @default(now()) @updatedAt
+    maintenanceTickets  MaintenanceTicket[]
+    documents           Document[]
+    sentMessages        Message[]
+    tenantConversations Conversation[]      @relation("TenantConversations")
+    adminConversations  Conversation[]      @relation("AdminConversations")
+}
+
+model Expense {
+    id          String    @id @default(cuid())
+    propertyId  String? // Gharama inaweza kuhusishwa na jengo maalum au kuwa ya jumla
+    property    Property? @relation(fields: [propertyId], references: [id])
+    category    String // e.g., "Utilities", "Maintenance", "Salaries", "Marketing"
+    description String
+    amount      Float
+    expenseDate DateTime
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+}
+
+model Property {
+    id          String    @id @default(cuid())
+    name        String // e.g., "Mbezi Beach Apartments", "Masaki Towers"
+    location    String
+    description String?   @db.Text
+    images      String[] // Tumeondoa 'imageUrl' na kuweka orodha ya picha
+    latitude    Float? // Coordinate ya latitude
+    longitude   Float? // Coordinate ya longitude
+    amenities   String[]
+    totalPrice  Float? // Price to rent the whole building
+    ownerId     String // Future use: if multiple owners use the system
+    rooms       Room[]
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    expenses    Expense[]
+}
+
+model Room {
+    id                 String              @id @default(cuid())
+    roomNumber         String // e.g., "A101", "Floor 2, Room 5"
+    type               String // e.g., "Studio", "2-Bedroom", "Single"
+    price              Float
+    isOccupied         Boolean             @default(false)
+    description        String?             @db.Text
+    images             String[]
+    propertyId         String
+    property           Property            @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+    lease              Lease? // A room can have one active lease
+    createdAt          DateTime            @default(now())
+    updatedAt          DateTime            @updatedAt
+    reservation        Reservation[]
+    maintenanceTickets MaintenanceTicket[]
+}
+
+model Lease {
+    id        String    @id @default(cuid())
+    startDate DateTime
+    endDate   DateTime
+    isActive  Boolean   @default(true)
+    tenantId  String
+    tenant    User      @relation(fields: [tenantId], references: [id])
+    roomId    String    @unique // A room can only have one active lease
+    room      Room      @relation(fields: [roomId], references: [id])
+    payments  Payment[]
+    createdAt DateTime  @default(now())
+    invoices  Invoice[] // Ongeza uhusiano na ankara
+}
+
+enum ReservationStatus {
+    PENDING
+    CONFIRMED
+    CANCELLED
+}
+
+model Reservation {
+    id        String            @id @default(cuid())
+    userId    String
+    user      User              @relation(fields: [userId], references: [id])
+    roomId    String
+    room      Room              @relation(fields: [roomId], references: [id])
+    status    ReservationStatus @default(PENDING)
+    createdAt DateTime          @default(now())
+
+    @@unique([userId, roomId])
+}
+
+model Payment {
+    id          String   @id @default(cuid())
+    amount      Float
+    paymentDate DateTime
+    method      String // e.g., "Online", "Cash", "Bank Transfer"
+    status      String // e.g., "Completed", "Pending"
+    leaseId     String
+    lease       Lease    @relation(fields: [leaseId], references: [id])
+    createdAt   DateTime @default(now())
+    invoice     Invoice?
+}
+
+// --- Support models for NextAuth.js ---
+enum Role {
+    TENANT
+    ADMIN
+}
+
+model Account {
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String? @db.Text
+    session_state     String?
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+
+    @@unique([identifier, token])
+}
+
+//@@@@@@@@@@@@@@@ payment gateways @@@@@@@@@@@@@@@@@@@@@@@@@
+enum GatewayProvider {
+    SELCOM
+    PESAPAL
+    FLUTTERWAVE
+    PAYCHANGU
+}
+
+model PaymentGateway {
+    id          String          @id @default(cuid())
+    provider    GatewayProvider @unique // Hakikisha kila provider anaingizwa mara moja tu
+    name        String // e.g., "Selcom", "Flutterwave"
+    description String?
+    isEnabled   Boolean         @default(false)
+    apiKey      String? // API Key
+    apiSecret   String? // API Secret (kama inahitajika)
+    vendor      String? // Vendor ID (kwa Selcom)
+    meta        Json? // 👈 add this for extra config
+    isLiveMode  Boolean         @default(false) // Sandbox vs Live
+    createdAt   DateTime        @default(now())
+    updatedAt   DateTime        @updatedAt
+}
+
+//@@@@@@@@@@@@@@@@@@@ invoice @@@@@@@@@@@@@@@@
+enum InvoiceStatus {
+    DUE
+    PAID
+    OVERDUE
+}
+
+model Invoice {
+    id        String        @id @default(cuid())
+    leaseId   String
+    lease     Lease         @relation(fields: [leaseId], references: [id])
+    amount    Float
+    dueDate   DateTime
+    status    InvoiceStatus @default(DUE)
+    paymentId String?       @unique
+    payment   Payment?      @relation(fields: [paymentId], references: [id])
+    createdAt DateTime      @default(now())
+
+    transactionRef String? @unique
+}
+
+enum DocumentType {
+    ID_CARD
+    PASSPORT
+    LEASE_AGREEMENT
+    OTHER
+}
+
+model Document {
+    id        String       @id @default(cuid())
+    tenantId  String
+    tenant    User         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+    name      String // Jina la faili lililopakiwa na mtumiaji
+    type      DocumentType @default(OTHER)
+    url       String // URL salama kutoka Cloudinary
+    publicId  String // Kitambulisho cha faili kwenye Cloudinary (muhimu kwa kufuta)
+    createdAt DateTime     @default(now())
+}
+
+model Conversation {
+    id        String    @id @default(cuid())
+    tenantId  String
+    tenant    User      @relation("TenantConversations", fields: [tenantId], references: [id])
+    adminId   String
+    admin     User      @relation("AdminConversations", fields: [adminId], references: [id])
+    messages  Message[]
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+
+    @@unique([tenantId, adminId]) // Hakikisha kuna mazungumzo mamoja tu kati ya mpangaji na admin
+}
+
+model Message {
+    id             String       @id @default(cuid())
+    conversationId String
+    conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+    senderId       String
+    sender         User         @relation(fields: [senderId], references: [id])
+    content        String       @db.Text
+    isRead         Boolean      @default(false)
+    createdAt      DateTime     @default(now())
+}
+
+model Vendor {
+    id    String  @id @default(cuid())
+    name  String
+    trade String // e.g., "Plumber", "Electrician", "Painter"
+    phone String?
+    email String? @unique
+
+    // Uhusiano: Fundi anaweza kuwa amegawiwa tiketi nyingi
+    assignedTickets MaintenanceTicket[]
+}
+
+model Translation {
+    id     String @id @default(cuid())
+    locale String // "en", "sw", "fr"
+    key    String // "HomePage.heroTitle", "Navbar.home"
+    value  String @db.Text
+
+    // Hakikisha kila 'key' ni ya kipekee kwa kila lugha
+    @@unique([locale, key])
+}
+
+model HomepageContent {
+    id                String   @id @default(cuid())
+    locale            String // 'en', 'sw', 'fr'
+    sectionIdentifier String // 'HERO_SECTION', 'WHY_CHOOSE_US', etc.
+    isEnabled         Boolean  @default(true) // Kwa ajili ya kuwasha/kuzima
+    content           Json // Maudhui yote ya section (titles, subtitles, etc.)
+    updatedAt         DateTime @updatedAt
+
+    @@unique([locale, sectionIdentifier])
+}
+
+model Setting {
+    id String @id @unique // Tutatumia 'keys' kama ID (e.g., "homepage.heroSection.enabled")
+
+    isEnabled   Boolean @default(true)
+    jsonContent Json?
+}

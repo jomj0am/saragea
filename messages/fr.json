@@ -1,0 +1,70 @@
+{
+  "HomePageV3": {
+    "heroTitle": "Votre Prochaine <primary>Maison</primary> Vous Attend.",
+    "heroSubtitle": "Vivez une expérience de location transparente avec notre plateforme moderne. Trouvez, gérez et installez-vous dans votre espace parfait sans effort.",
+    "heroCtaButton": "Explorer les Propriétés",
+    "featuredPropertiesTitle": "Propriétés en Vedette",
+    "whyChooseUsTitle": "Pourquoi Nous Choisir ?",
+    "whyChooseUsSubtitle": "Nous offrons plus qu'un simple lieu de vie. Nous proposons un écosystème complet pour un style de vie moderne, confortable et sécurisé.",
+    "whyChooseUsFeature1Title": "Sécurisé & Fiable",
+    "whyChooseUsFeature1Desc": "Vos données et paiements sont protégés par des mesures de sécurité de premier ordre, garantissant votre tranquillité d'esprit.",
+    "whyChooseUsFeature2Title": "Paiements Simplifiés",
+    "whyChooseUsFeature2Desc": "Payez votre loyer sans effort depuis n'importe où avec de multiples options de paiement en ligne, toutes intégrées à votre tableau de bord.",
+    "whyChooseUsFeature3Title": "Support 24/7",
+    "whyChooseUsFeature3Desc": "Nos équipes de support et de maintenance dédiées sont toujours disponibles pour vous aider en cas de problème.",
+    "testimonialsTitle": "Ce que Disent Nos Locataires",
+    "testimonialsSubtitle": "Des histoires vraies de personnes qui ont trouvé leur chez-soi avec nous.",
+    "testimonial1Quote": "Le processus a été incroyablement fluide. J'ai trouvé et emménagé dans mon nouvel appartement en moins d'une semaine. La gestion est très réactive !",
+    "testimonial1Name": "Asha Juma",
+    "testimonial1Location": "Locataire, Masaki Towers",
+    "testimonial2Quote": "Pouvoir payer mon loyer et signaler les problèmes de maintenance en ligne a changé la donne. C'est tellement pratique.",
+    "testimonial2Name": "John Bakari",
+    "testimonial2Location": "Locataire, Mbezi Beach Apartments",
+    "testimonial3Quote": "Un service vraiment professionnel. Les propriétés sont bien entretenues et l'équipe est toujours serviable. Fortement recommandé.",
+    "testimonial3Name": "Fatima Khamis",
+    "testimonial3Location": "Locataire, Upanga Residences",
+    "ctaTitle": "Prêt à Trouver Votre Nouveau Chez-vous ?",
+    "ctaSubtitle": "Rejoignez notre communauté de locataires heureux dès aujourd'hui. Votre prochain chapitre commence ici.",
+    "ctaButton": "Commencez Maintenant",
+    "ShopByLifestyle": {
+      "sectionTitle": "Explorer par Style de Vie",
+      "sectionSubtitle": "Trouvez une maison qui correspond parfaitement à votre mode de vie. Nous avons préparé des sélections pour chaque besoin et aspiration.",
+      "oceanfrontLivingTitle": "Vie en Bord de Mer",
+      "oceanfrontLivingSubtitle": "Réveillez-vous au son des vagues.",
+      "cityHubTitle": "Appartements au Centre-Ville",
+      "cityHubSubtitle": "Vivez au cœur de l'action.",
+      "familyHomesTitle": "Maisons Familiales",
+      "familyHomesSubtitle": "Un espace de vie spacieux pour tous.",
+      "budgetFriendlyTitle": "Abordable",
+      "budgetFriendlySubtitle": "Le confort sans compromis."
+    },
+    "Interactive3D": {
+      "sectionTitle": "Explorez en 3D",
+      "sectionSubtitle": "Faites-vous une idée réelle de notre propriété phare. Interagissez avec le modèle 3D ci-dessous pour explorer ses caractéristiques.",
+      "propertyTitle": "La Villa au Bord de l'Eau de Masaki",
+      "propertyDescription": "Un chef-d'œuvre architectural époustouflant offrant un luxe inégalé et des vues imprenables sur l'océan. C'est plus qu'une maison ; c'est une déclaration de style de vie.",
+      "feature1": "Piscine à Débordement Privée",
+      "feature2": "Accès Direct à la Plage",
+      "feature3": "Intégration Maison Intelligente",
+      "ctaButton": "Découvrez-en d'Autres Similaires"
+    },
+    "InteractiveMap": {
+      "sectionTitle": "Nos Emplacements",
+      "sectionSubtitle": "Découvrez toutes nos propriétés à travers la ville sur une seule carte interactive. Votre prochaine maison n'est qu'à un clic."
+    },
+    "RecentlyViewed": {
+      "sectionTitle": "Propriétés Récemment Consultées"
+    }
+  },
+    "ContactPage": {
+    "heroTitle": "Contactez-nous",
+    "heroSubtitle": "Nous sommes là pour vous aider. Que vous ayez une question sur nos propriétés ou besoin de support, nous sommes prêts à vous assister.",
+    "detailsTitle": "Coordonnées",
+    "address": "123 Route de Masaki, Dar es Salaam, Tanzanie",
+    "phone1": "+255 784 123 456 (Ventes & Renseignements)",
+    "phone2": "+255 655 654 321 (Support)",
+    "email": "info@saragea.co.tz",
+    "formTitle": "Envoyez-nous un Message",
+    "formSubtitle": "Vous avez une question spécifique ? Remplissez le formulaire ci-dessous et notre équipe vous répondra dans les plus brefs délais."
+  }
+}
