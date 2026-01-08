@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useForm, type SubmitHandler } from 'react-hook-form'; 
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { type Room } from '@prisma/client';
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { type Room } from "@prisma/client";
 import {
   Form,
   FormControl,
@@ -12,41 +12,30 @@ import {
   FormLabel,
   FormMessage,
   FormDescription,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Switch } from '@/components/ui/switch';
-import { LoadingButton } from '../../ui/loading-button';
-import MultiImageUploader from '../shared/MultiImageUploader';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
+import { LoadingButton } from "../../ui/loading-button";
+import MultiImageUploader from "../shared/MultiImageUploader";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import {
-  BedDouble,
-  DollarSign,
-  ImageIcon,
-  Lock,
-} from 'lucide-react';
+} from "@/components/ui/accordion";
+import { BedDouble, DollarSign, ImageIcon, Lock } from "lucide-react";
 
-// Fixed schema - make isOccupied consistently required
 const formSchema = z.object({
-  roomNumber: z.string().min(1),
-  type: z.string().min(3),
-  // `coerce.number()` lets the field accept a string input and gives you a number out
-  price: z.string().min(1, "Amount is required"), // keep string
-  
+  roomNumber: z.string().min(1, "Room number is required"),
+  type: z.string().min(3, "Room type is required"),
+  price: z.string().min(1, "Price is required"), // Keep as string for form handling
   description: z.string().optional(),
   images: z.array(z.string().url()).optional(),
-  // isOccupied: z.boolean().default(false), // coerce + default ✅
+  isOccupied: z.boolean(),
 });
 
-
-
 type RoomFormValues = z.infer<typeof formSchema>;
-
 
 interface RoomFormProps {
   initialData?: Room;
@@ -59,29 +48,39 @@ export default function RoomForm({
   onSubmit,
   isSubmitting,
 }: RoomFormProps) {
-const form = useForm<RoomFormValues>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    roomNumber: initialData?.roomNumber ?? '',
-    type: initialData?.type ?? '',
-    price: String(initialData?.price ),
-    description: initialData?.description ?? '',
-    images: initialData?.images ?? [],
-    // isOccupied: initialData?.isOccupied ?? false,
-  },
-});
+  const form = useForm<RoomFormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      roomNumber: initialData?.roomNumber ?? "",
+      type: initialData?.type ?? "",
+      // Fix: Ensure we don't get "undefined" as a string
+      price: initialData?.price ? String(initialData.price) : "",
+      description: initialData?.description ?? "",
+      images: initialData?.images ?? [],
+      isOccupied: initialData?.isOccupied ?? false,
+    },
+  });
 
-
-const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
-  onSubmit(values); // values.price is already a number
-};
-
-
+  const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
+    onSubmit(values);
+  };
 
   const sections = [
-    { title: 'Basic Room Details', icon: <BedDouble className="text-purple-500 dark:text-purple-400" />, value: 'item-1' },
-    { title: 'Room Images', icon: <ImageIcon className="text-pink-500 dark:text-pink-400" />, value: 'item-2' },
-    { title: 'Occupancy Status', icon: <Lock className="text-green-500 dark:text-green-400" />, value: 'item-3' },
+    {
+      title: "Basic Room Details",
+      icon: <BedDouble className="text-purple-500 dark:text-purple-400" />,
+      value: "item-1",
+    },
+    {
+      title: "Room Images",
+      icon: <ImageIcon className="text-pink-500 dark:text-pink-400" />,
+      value: "item-2",
+    },
+    {
+      title: "Occupancy Status",
+      icon: <Lock className="text-green-500 dark:text-green-400" />,
+      value: "item-3",
+    },
   ];
 
   return (
@@ -106,14 +105,17 @@ const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
               </AccordionTrigger>
 
               <AccordionContent className="space-y-4 px-4 pt-4 pb-6">
-                {section.value === 'item-1' && (
+                {section.value === "item-1" && (
                   <>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <FormField
                         name="roomNumber"
+                        control={form.control}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="dark:text-gray-200">Room Number / Name</FormLabel>
+                            <FormLabel className="dark:text-gray-200">
+                              Room Number / Name
+                            </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="A101"
@@ -127,9 +129,12 @@ const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
                       />
                       <FormField
                         name="type"
+                        control={form.control}
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="dark:text-gray-200">Room Type</FormLabel>
+                            <FormLabel className="dark:text-gray-200">
+                              Room Type
+                            </FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="2-Bedroom Apartment"
@@ -145,6 +150,7 @@ const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
 
                     <FormField
                       name="price"
+                      control={form.control}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="dark:text-gray-200 flex items-center gap-1">
@@ -152,11 +158,12 @@ const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
                             <DollarSign className="w-4 h-4 text-indigo-500" />
                           </FormLabel>
                           <FormControl>
+                            {/* ✅ FIX: Pass string value directly, do NOT cast to Number() here */}
                             <Input
                               type="number"
                               placeholder="500000"
-                              value={field.value}
-                              onChange={(e) => field.onChange(Number(e.target.value))}
+                              {...field}
+                              onChange={(e) => field.onChange(e.target.value)}
                               className="shadow-inner hover:shadow-lg transition-shadow dark:bg-gray-700 dark:text-gray-100"
                             />
                           </FormControl>
@@ -167,9 +174,12 @@ const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
 
                     <FormField
                       name="description"
+                      control={form.control}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="dark:text-gray-200">Description</FormLabel>
+                          <FormLabel className="dark:text-gray-200">
+                            Description
+                          </FormLabel>
                           <FormControl>
                             <Textarea
                               rows={5}
@@ -185,9 +195,10 @@ const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
                   </>
                 )}
 
-                {section.value === 'item-2' && (
+                {section.value === "item-2" && (
                   <FormField
                     name="images"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
@@ -202,13 +213,16 @@ const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
                   />
                 )}
 
-                {section.value === 'item-3' && (
+                {section.value === "item-3" && (
                   <FormField
                     name="isOccupied"
+                    control={form.control}
                     render={({ field }) => (
                       <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm dark:border-gray-600">
                         <div className="space-y-0.5">
-                          <FormLabel className="dark:text-gray-200">Mark as Occupied</FormLabel>
+                          <FormLabel className="dark:text-gray-200">
+                            Mark as Occupied
+                          </FormLabel>
                           <FormDescription>
                             Toggle on if the room is currently rented out.
                           </FormDescription>
@@ -233,7 +247,7 @@ const handleSubmit: SubmitHandler<RoomFormValues> = (values) => {
           className="w-full bg-gradient-to-r py-6 from-indigo-500 to-pink-500 shadow-lg hover:scale-101 transform transition-all text-white dark:from-indigo-600 dark:to-pink-600"
           loading={isSubmitting}
         >
-          {initialData ? 'Save Changes' : 'Create Room'}
+          {initialData ? "Save Changes" : "Create Room"}
         </LoadingButton>
       </form>
     </Form>

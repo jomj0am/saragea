@@ -1,5 +1,5 @@
 {
-    "Auth": {
+  "Auth": {
     "loginTitle": "Welcome Back!",
     "loginSubtitle": "Sign in to continue your journey with SARAGEA.",
     "registerTitle": "Create an Account",
@@ -9,18 +9,25 @@
     "registerPrompt": "Already have an account?",
     "registerAction": "Log in"
   },
- "GlobalSearch": {
+
+  "Navbar": {
+    "home": "Home",
+    "properties": "Properties",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "GlobalSearch": {
     "placeholder": "Search for properties, rooms, or locations...",
     "noResults": "No results found for your query.",
     "propertiesHeading": "Properties",
     "roomsHeading": "Rooms",
     "searching": "Searching..."
-},
+  },
   "HomePageV3": {
-    "hero":{
-       "titleKey":"",
-       "subtitleKey":"",
-       "ctaButtonKey": ""
+    "hero": {
+      "titleKey": "",
+      "subtitleKey": "",
+      "ctaButtonKey": ""
     },
 
     "heroTitle": "Your Next <primary>Home</primary> Awaits.",
@@ -50,7 +57,7 @@
     "ctaTitle": "Ready to Find Your New Home?",
     "ctaSubtitle": "Join our community of happy tenants today. Your next chapter starts here.",
     "ctaButton": "Get Started Now",
-       "ShopByLifestyle": {
+    "ShopByLifestyle": {
       "sectionTitle": "Shop by Lifestyle",
       "sectionSubtitle": "Find a home that perfectly matches your way of life. We've curated selections for every need and aspiration.",
       "oceanfrontLivingTitle": "Oceanfront Living",
@@ -102,12 +109,17 @@
     "value2Title": "Comfort",
     "value2Desc": "We provide well-maintained spaces with essential amenities for a comfortable lifestyle.",
     "value3Title": "Transparency",
-    "value3Desc": "From digital leases to online payment history, every interaction is clear and straightforward."
+    "value3Desc": "From digital leases to online payment history, every interaction is clear and straightforward.",
+    "heroImage": "/assets/media/about/hero.jpeg",
+    "storyMainImage": "/assets/media/about/story.avif",
+    "storySecondaryImage": "/assets/images/story-secondary.jpg",
+    "storyStatValue": "10+",
+    "storyStatLabel": "Years of Excellence"
   },
   "ContactPage": {
     "heroTitle": "Get in Touch",
     "heroSubtitle": "We're here to help. Whether you have a question about our properties or need support, we're ready to assist.",
-    "ctaGetInTouch":"Contact Us Now",
+    "ctaGetInTouch": "Contact Us Now",
     "ctaButton": "Send a Message",
     "detailsTitle": "Contact Information",
     "addressLabel": "Our Address",
@@ -143,13 +155,13 @@
     "formErrorToastDesc": "Could not send your message. Please try again.",
     "formResponseNotice": "We typically respond to all inquiries within 1 business day. For urgent matters, please call us directly."
   },
-    "ZodErrors": {
+  "ZodErrors": {
     "nameRequired": "Please enter your name.",
     "emailInvalid": "Please enter a valid email address.",
     "subjectRequired": "Please provide a subject.",
     "messageRequired": "Message must be at least 10 characters long."
   },
-    "Onboarding": {
+  "Onboarding": {
     "welcomeTitle": "Welcome to SARAGEA Appartments!",
     "welcomeSubtitle": "Your journey to a perfect home starts here. Let's quickly set things up for your best experience.",
     "personalizationTitle": "Personalize Your Experience",
@@ -161,7 +173,7 @@
     "nextButton": "Next",
     "startButton": "Start Exploring"
   },
-    "CartPage": {
+  "CartPage": {
     "pageTitle": "Your Reservations",
     "emptyTitle": "Your reservation list is empty",
     "emptySubtitle": "Looks like you haven't added any properties yet.",
@@ -175,7 +187,7 @@
     "itemRemovedToast": "Room Removed",
     "itemRemovedDesc": "{roomType} has been removed from your reservations."
   },
-    "RoomDetailsPage": {
+  "RoomDetailsPage": {
     "backToProperty": "Back to {propertyName}",
     "roomLabel": "Room",
     "statusAvailable": "Available",
@@ -187,5 +199,100 @@
     "reservationCta": "Reserve this Room",
     "reservationNotice": "You won't be charged yet. This will hold your reservation while you prepare your documents.",
     "propertyDetailsTitle": "Property Information"
+  },
+
+  "FaqPage": {
+    "heroTitle": "How can we help?",
+    "heroSubtitle": "Find answers to frequently asked questions about living at SARAGEA.",
+    "searchPlaceholder": "Search for answers...",
+    "categories": {
+      "general": "General Inquiries",
+      "booking": "Rent & Booking",
+      "maintenance": "Maintenance",
+      "security": "Account & Security"
+    },
+    "questions": {
+      "q1": "What is included in the monthly rent?",
+      "a1": "Monthly rent typically includes water and 24/7 security. Electricity and Internet are usually handled separately per unit.",
+      "q2": "How do I reserve an apartment?",
+      "a2": "Simply find a room you like, click 'Reserve Now', and follow the instructions to upload your documents. Our team will review your application within 24 hours.",
+      "q3": "What payment methods do you accept?",
+      "a3": "We accept M-Pesa, Tigo Pesa, Airtel Money, and Bank Transfers. All payments are processed securely through our automated system.",
+      "q4": "How do I report a maintenance issue?",
+      "a4": "Login to your dashboard, go to the Maintenance section, and click 'Submit New Request'. You can track the status of your repair in real-time.",
+      "q5": "Is there a security deposit?",
+      "a5": "Yes, we typically require a security deposit equivalent to one month's rent before move-in. This is refundable at the end of your lease.",
+      "q6": "Can I use social media to log in?",
+      "a6": "Absolutely! You can sign up and log in using your Google, Facebook, or Apple account for a faster experience."
+    },
+    "stillHaveQuestions": "Still have questions?",
+    "contactSupport": "Can't find what you're looking for? Contact our support team directly.",
+    "contactBtn": "Contact Us Now"
+  },
+  "PrivacyPage": {
+    "heroTitle": "Privacy Policy",
+    "heroSubtitle": "Your privacy is our priority. Learn how we protect and manage your data at SARAGEA.",
+    "lastUpdated": "Last Updated: January 07, 2026",
+    "sections": {
+      "s1_title": "1. Information We Collect",
+      "s1_content": "We collect information you provide directly to us, such as your name, email, phone number, and identity documents when you reserve a room or create an account.",
+      "s2_title": "2. How We Use Your Data",
+      "s2_content": "Your data is used to process your reservations, manage your lease agreements, process payments securely, and communicate maintenance updates.",
+      "s3_title": "3. Data Sharing",
+      "s3_content": "We do not sell your data. We only share necessary information with trusted partners like payment gateways (Selcom, Flutterwave) and storage providers (Cloudinary) to fulfill our services.",
+      "s4_title": "4. Data Security",
+      "s4_content": "We implement 256-bit encryption and secure server protocols to ensure your documents and payment information are shielded from unauthorized access.",
+      "s5_title": "5. Your Rights",
+      "s5_content": "You have the right to access, correct, or request the deletion of your personal data at any time through your dashboard or by contacting support."
+    },
+    "contactTitle": "Questions about Privacy?",
+    "contactDesc": "If you have any questions about this policy, please reach out to our legal team.",
+    "contactBtn": "Email Legal Team"
+  },
+  "TermsPage": {
+    "heroTitle": "Terms of Service",
+    "heroSubtitle": "Please read these terms carefully. They govern your use of the SARAGEA platform and rental services.",
+    "lastUpdated": "Last Updated: January 07, 2026",
+    "sections": {
+      "s1_title": "1. Acceptance of Terms",
+      "s1_content": "By accessing SARAGEA, you agree to be bound by these Terms of Service and all applicable laws and regulations in Tanzania.",
+      "s2_title": "2. Eligibility",
+      "s2_content": "You must be at least 18 years old to create an account or reserve a property. By using this site, you represent that you meet this age requirement.",
+      "s3_title": "3. Booking & Payments",
+      "s3_content": "Reservations are subject to availability and document verification. Payments made through the platform are non-refundable unless specified in your specific lease agreement.",
+      "s4_title": "4. Tenant Obligations",
+      "s4_content": "Tenants agree to provide accurate information, maintain the property in good condition, and report any maintenance issues promptly through the dashboard.",
+      "s5_title": "5. Account Termination",
+      "s5_content": "We reserve the right to suspend or terminate accounts that violate these terms, engage in fraudulent activity, or fail to complete required payments.",
+      "s6_title": "6. Liability",
+      "s6_content": "SARAGEA is not liable for indirect or consequential damages arising from your use of the platform or temporary service interruptions."
+    },
+    "agreeTitle": "Got Questions?",
+    "agreeDesc": "If you need clarification on any of these terms, our support team is happy to help.",
+    "contactBtn": "Contact Support"
+  },
+  "ProfilePage": {
+    "heroTitle": "My Profile",
+    "heroSubtitle": "Manage your personal information and account security.",
+    "tabs": {
+      "overview": "Overview",
+      "edit": "Edit Profile",
+      "security": "Security"
+    },
+    "roleLabel": {
+      "ADMIN": "Administrator",
+      "TENANT": "Resident Tenant"
+    },
+    "form": {
+      "nameLabel": "Full Name",
+      "emailLabel": "Email Address",
+      "phoneLabel": "Phone Number",
+      "bioLabel": "Bio / Note",
+      "saveBtn": "Save Changes",
+      "currentPass": "Current Password",
+      "newPass": "New Password",
+      "confirmPass": "Confirm New Password",
+      "changePassBtn": "Update Password"
+    }
   }
 }

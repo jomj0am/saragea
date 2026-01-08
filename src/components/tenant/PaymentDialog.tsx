@@ -1,86 +1,118 @@
 // components/tenant/PaymentDialog.tsx
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
-import { type Invoice, type PaymentGateway } from '@prisma/client';
-import { Loader2 } from 'lucide-react';
-import { format } from 'date-fns';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useToast } from "@/components/ui/use-toast";
+import { type Invoice, type PaymentGateway } from "@prisma/client";
+import { Loader2 } from "lucide-react";
+import { format } from "date-fns";
+import { formatCurrency } from "@/lib/utils";
 
 export default function PaymentDialog({ invoice }: { invoice: Invoice }) {
-    const [gateways, setGateways] = useState<PaymentGateway[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [selectedGateway, setSelectedGateway] = useState<string | null>(null);
-    const { toast } = useToast();
+  const [gateways, setGateways] = useState<PaymentGateway[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedGateway, setSelectedGateway] = useState<string | null>(null);
+  const { toast } = useToast();
 
-    useEffect(() => {
-        // Pata gateways zinazofanya kazi tu
-        fetch('/api/gateways?enabled=true')
-            .then(res => res.json())
-            .then(data => setGateways(data));
-    }, []);
+  useEffect(() => {
+    // Pata gateways zinazofanya kazi tu
+    fetch("/api/gateways?enabled=true")
+      .then((res) => res.json())
+      .then((data) => setGateways(data));
+  }, []);
 
-    const handlePayment = async (provider: string) => {
-        setIsLoading(true);
-        setSelectedGateway(provider);
-        try {
-            const response = await fetch('/api/payments/initiate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    invoiceId: invoice.id,
-                    amount: invoice.amount,
-                    gatewayProvider: provider,
-                }),
-            });
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message);
+  const handlePayment = async (provider: string) => {
+    setIsLoading(true);
+    setSelectedGateway(provider);
+    try {
+      const response = await fetch("/api/payments/initiate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          invoiceId: invoice.id,
+          amount: invoice.amount,
+          gatewayProvider: provider,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message);
 
-            // Redirect kwenda kwenye ukurasa wa malipo
-            window.location.href = data.redirectUrl;
+      // Redirect kwenda kwenye ukurasa wa malipo
+      window.location.href = data.redirectUrl;
+    } catch (error: unknown) {
+      let message = "Something went wrong";
 
-        } catch (error: unknown) {
-
-                let message = 'Something went wrong';
-
-    if (error instanceof Error) {
+      if (error instanceof Error) {
         message = error.message;
-    } else if (typeof error === 'string') {
+      } else if (typeof error === "string") {
         message = error;
+      }
+      toast({ variant: "destructive", title: "Error", description: message });
+      setIsLoading(false);
+      setSelectedGateway(null);
     }
-            toast({ variant: 'destructive', title: 'Error', description: message });
-            setIsLoading(false);
-            setSelectedGateway(null);
-        }
-    };
+  };
 
-    return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button size="sm">Pay Now</Button>
-            </DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Choose Payment Method</DialogTitle>
-                    <DialogDescription>Select a provider to complete your payment for invoice due on {format(invoice.dueDate, 'PPP')}.</DialogDescription>
-                </DialogHeader>
-                <div className="space-y-4 py-4">
-                    {gateways.length > 0 ? gateways.map(gw => (
-                        <Button
-                            key={gw.id}
-                            className="w-full"
-                            size="lg"
-                            disabled={isLoading}
-                            onClick={() => handlePayment(gw.provider)}
-                        >
-                            {isLoading && selectedGateway === gw.provider && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                            Pay with {gw.name}
-                        </Button>
-                    )) : <p className="text-center text-muted-foreground">No online payment methods are enabled. Please contact management.</p>}
-                </div>
-            </DialogContent>
-        </Dialog>
-    );
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button size="sm">Pay Now</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Choose Payment Method</DialogTitle>
+          <DialogDescription>
+            Select a provider to complete your payment for invoice due on{" "}
+            {format(invoice.dueDate, "PPP")}.
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="space-y-4 py-4">
+          <div className="bg-muted/30 p-4 rounded-lg text-sm space-y-2 mb-4 border border-dashed">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Base Rent</span>
+              <span>{formatCurrency(invoice.amount)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Service Charge</span>
+              <span>Included</span>
+            </div>
+            <div className="border-t pt-2 mt-2 flex justify-between font-bold">
+              <span>Total Due</span>
+              <span>{formatCurrency(invoice.amount)}</span>
+            </div>
+          </div>
+          {gateways.length > 0 ? (
+            gateways.map((gw) => (
+              <Button
+                key={gw.id}
+                className="w-full"
+                size="lg"
+                disabled={isLoading}
+                onClick={() => handlePayment(gw.provider)}
+              >
+                {isLoading && selectedGateway === gw.provider && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Pay with {gw.name}
+              </Button>
+            ))
+          ) : (
+            <p className="text-center text-muted-foreground">
+              No online payment methods are enabled. Please contact management.
+            </p>
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 }

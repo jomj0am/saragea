@@ -1,6 +1,12 @@
+// src/app/api/auth/[...nextauth]/route.ts
 import NextAuth from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/auth-options";
+import { getAuthOptions } from "./auth-options";
+import { NextRequest } from "next/server";
 
-const handler = NextAuth(authOptions);
+async function handler(req: NextRequest, context: unknown) {
+  // 1. Fetch dynamic options
+  const options = await getAuthOptions();
+  return NextAuth(options)(req, context);
+}
 
 export { handler as GET, handler as POST };

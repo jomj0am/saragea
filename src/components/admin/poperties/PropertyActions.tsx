@@ -1,50 +1,39 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Edit, MoreHorizontal, PlusCircle } from 'lucide-react';
-import type { Property } from '@prisma/client';
-import PropertyForm from './PropertyForm';
-import DeletePropertyButton from './DeletePropertyButton';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Edit, MoreHorizontal, PlusCircle } from "lucide-react";
+import type { Property } from "@prisma/client";
+import PropertyForm from "./PropertyForm";
+import DeletePropertyButton from "./DeletePropertyButton";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { useToast } from '@/components/ui/use-toast';
-import * as z from 'zod';
-import { IconButton } from '../shared/IconButton';
+} from "@/components/ui/dropdown-menu";
+import { useToast } from "@/components/ui/use-toast";
+import { IconButton } from "../shared/IconButton";
 
-// ---- Form Schema ----
-const formSchema = z.object({
-  name: z.string().min(3, 'Property name is required'),
-  location: z.string().min(3, 'Location is required'),
-  description: z
-    .string()
-    .min(20, 'A more detailed description is required')
-    .optional()
-    .or(z.literal('')),
-  images: z.array(z.string().url()).min(1, 'At least one image is required'),
-  amenities: z.array(z.string()).optional(),
-  coords: z
-    .object({
-      latitude: z.number().nullable().optional(),
-      longitude: z.number().nullable().optional(),
-    })
-    .optional(),
-});
-
-type PropertyFormValues = z.infer<typeof formSchema>;
+// Define the shape of data coming BACK from PropertyForm
+type FormattedSubmission = {
+  name: string;
+  location: string;
+  description?: string;
+  images: string[];
+  amenities?: string[];
+  latitude: number | null;
+  longitude: number | null;
+};
 
 interface PropertyActionsProps {
   property?: Property;
@@ -57,47 +46,53 @@ export default function PropertyActions({ property }: PropertyActionsProps) {
   const { toast } = useToast();
   const isEditMode = Boolean(property);
 
-  const handleSubmit = async (values: PropertyFormValues): Promise<void> => {
+  const handleSubmit = async (values: FormattedSubmission): Promise<void> => {
     setIsSubmitting(true);
     try {
+      // ✅ FIX: Include latitude and longitude in the payload
       const payload = {
         name: values.name,
         location: values.location,
-        description: values.description ?? '',
+        description: values.description ?? "",
         images: values.images,
         amenities: values.amenities ?? [],
-        // coords could be sent later if needed
+        latitude: values.latitude, // Added
+        longitude: values.longitude, // Added
       };
 
-      const url = isEditMode ? `/api/properties/${property!.id}` : '/api/properties';
-      const method = isEditMode ? 'PATCH' : 'POST';
+      const url = isEditMode
+        ? `/api/properties/${property!.id}`
+        : "/api/properties";
+      const method = isEditMode ? "PATCH" : "POST";
 
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
         const errorData: { message?: string } = await response.json();
-        throw new Error(errorData.message || 'Failed to save property');
+        throw new Error(errorData.message || "Failed to save property");
       }
 
       toast({
-        title: `Property ${isEditMode ? 'updated' : 'created'} successfully!`,
+        title: `Property ${isEditMode ? "updated" : "created"} successfully!`,
       });
       setIsOpen(false);
       router.refresh();
     } catch (error: unknown) {
       const message =
-        error instanceof Error ? error.message : 'An unexpected error occurred';
-      toast({ variant: 'destructive', title: 'Error', description: message });
+        error instanceof Error ? error.message : "An unexpected error occurred";
+      toast({ variant: "destructive", title: "Error", description: message });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const DialogWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  const DialogWrapper: React.FC<{ children: React.ReactNode }> = ({
+    children,
+  }) => (
     <DialogContent
       className="
         !max-w-full w-full h-full rounded-none

@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { Nodata } from "@/components/shared/Nodata";
 
+export const dynamic = "force-dynamic";
 // DB fetch
 async function getProperties() {
   return prisma.property.findMany({
@@ -36,30 +37,25 @@ export default async function AdminPropertiesPage() {
   const properties = await getProperties();
 
   return (
-    <section className="space-y-6 md:px-8">
+    <section className="space-y-6 md:px-8 xl:p-12">
       <Toaster />
 
-           <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <div className="flex items-center gap-2 text-2xl md:text-3xl font-bold tracking-tight">
-            <div className="relative bg-pink-100/90 rounded-sm shadow-lg shadow-indigo-500/80 dark:shadow-indigo-700 p-1">
-                          <Building2 className="h-9 w-9 text-fuchsia-600 dark:text-fuchsia-500" />
-
-            </div>
-              <span>
-                <h1>Manage Properties</h1>
-                <p className="text-[16px] font-light text-muted-foreground">Track and manage all tenant-reported issues in real time.</p>
-
-              </span>
+          <div className="relative bg-pink-100/90 rounded-sm shadow-lg shadow-indigo-500/80 dark:shadow-indigo-700 p-1">
+            <Building2 className="h-9 w-9 text-fuchsia-600 dark:text-fuchsia-500" />
+          </div>
+          <span>
+            <h1>Manage Properties</h1>
+            <p className="text-[16px] font-light text-muted-foreground">
+              Track and manage all tenant-reported issues in real time.
+            </p>
+          </span>
         </div>
         <div className="justify-end flex sm:w-auto w-full ">
-                         <PropertyActions />
-
+          <PropertyActions />
         </div>
-       
       </header>
-
-      {/* Header */}
-
 
       {/* Table */}
       <div className="overflow-hidden rounded-x border border-border bg-gradient-to-b from-background to-muted/20 shadow-md dark:border-gray-700">
@@ -85,10 +81,10 @@ export default async function AdminPropertiesPage() {
                 </div>
               </TableHead>
               <TableHead className="text-right w-1/4">
-                                <div className="flex gap-1 items-center font-semibold justify-end">
-                                  <MoreHorizontal className="w-4 drop-shadow-sm dark:shadow-md fill-orange-300 text-orange-500 drop-shadow-black"/>    Actions
-                                </div>
-
+                <div className="flex gap-1 items-center font-semibold justify-end">
+                  <MoreHorizontal className="w-4 drop-shadow-sm dark:shadow-md fill-orange-300 text-orange-500 drop-shadow-black" />{" "}
+                  Actions
+                </div>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -111,15 +107,15 @@ export default async function AdminPropertiesPage() {
                   </div>
                   <div className="flex flex-col overflow-hidden">
                     <span className="font-medium truncate">{prop.name}</span>
-                <span
-    className="
+                    <span
+                      className="
       text-sm text-muted-foreground line-clamp-2
       max-w-20
       md:max-w-70 lg:max-w-80   /* remove limit once ≥ md */
     "
-  >
-    {prop.description || "—"}
-  </span>
+                    >
+                      {prop.description || "—"}
+                    </span>
                   </div>
                 </TableCell>
 
@@ -154,7 +150,7 @@ export default async function AdminPropertiesPage() {
                   colSpan={4}
                   className="py-10 text-center text-muted-foreground"
                 >
-                  <Nodata/>
+                  <Nodata />
                   No properties yet. Click
                   <span className="mx-1 font-medium">“Add New Property”</span>
                   to get started.

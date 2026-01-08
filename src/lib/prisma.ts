@@ -1,5 +1,5 @@
 // src/lib/prisma.ts
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 // 'declare' inapanua 'global namespace' ya TypeScript.
 declare global {
@@ -9,10 +9,16 @@ declare global {
 }
 
 // 'singleton' pattern inahakikisha tuna 'instance' moja tu ya PrismaClient.
-export const prisma = globalThis.prisma || new PrismaClient();
+export const prisma =
+  globalThis.prisma ||
+  new PrismaClient({
+    // This helps prevent the build from hanging/crashing immediately if DB is missing
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
+  });
 
-// Kwenye 'development', tunahifadhi 'instance' kwenye 'globalThis' ili isipotee
-// wakati wa 'hot-reloading'.
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   globalThis.prisma = prisma;
 }

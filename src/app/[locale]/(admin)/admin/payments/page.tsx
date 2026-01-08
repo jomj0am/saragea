@@ -16,13 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import TableToolbar from "@/components/admin/shared/TableToolbar";
 import { Toaster } from "sonner";
 import { Nodata } from "../../../../../components/shared/Nodata";
-import {
-  Calendar,
-  Receipt,
-  TrendingUp,
-  UserPen,
-  Wallet,
-} from "lucide-react";
+import { Calendar, Receipt, TrendingUp, UserPen, Wallet } from "lucide-react";
+import ExportButton from "@/components/admin/shared/ExportButton";
 
 // Types
 type InvoiceWithDetails = Prisma.InvoiceGetPayload<{
@@ -51,9 +46,10 @@ const getStatusVariant = (status: string) => {
 };
 
 // Fetch invoices
-async function getInvoices(
-  searchParams: { q?: string; status?: string }
-): Promise<InvoiceWithDetails[]> {
+async function getInvoices(searchParams: {
+  q?: string;
+  status?: string;
+}): Promise<InvoiceWithDetails[]> {
   const query = searchParams.q ?? "";
   const statusParam = searchParams.status ?? "";
 
@@ -99,9 +95,11 @@ async function getInvoices(
 }
 
 // ✅ Main page component
-export default async function AdminPaymentsPage({ searchParams }: PaymentsPageProps) {
+export default async function AdminPaymentsPage({
+  searchParams,
+}: PaymentsPageProps) {
   // Await searchParams first
-  const awaitedParams = await searchParams ?? {};
+  const awaitedParams = (await searchParams) ?? {};
   const invoices = await getInvoices(awaitedParams);
 
   const unpaidInvoices = await prisma.invoice.findMany({
@@ -109,11 +107,23 @@ export default async function AdminPaymentsPage({ searchParams }: PaymentsPagePr
     include: { lease: { include: { tenant: true } } },
   });
 
+  const exportData = invoices.map((inv) => ({
+    ID: inv.id,
+    Tenant: inv.lease.tenant.name,
+    Email: inv.lease.tenant.email,
+    Room: inv.lease.room.roomNumber,
+    Amount: inv.amount,
+    Status: inv.status,
+    DueDate: inv.dueDate.toISOString().split("T")[0],
+    PaidDate: inv.payment?.paymentDate
+      ? inv.payment.paymentDate.toISOString().split("T")[0]
+      : "N/A",
+  }));
   return (
-    <div>
+    <div className="xl:p-12 space-y-6">
       <Toaster />
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex flex-col mb-6 sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-2 text-2xl md:text-3xl font-bold tracking-tight">
           <div className="relative bg-cyan-100/90 rounded-sm shadow-lg shadow-blue-500 dark:shadow-blue-700 p-1">
             <Wallet className="h-9 w-9 text-indigo-600 dark:text-indigo-400" />
@@ -126,6 +136,8 @@ export default async function AdminPaymentsPage({ searchParams }: PaymentsPagePr
           </span>
         </div>
         <div className="justify-end flex sm:w-auto w-full ">
+          <ExportButton data={exportData} filename="saragea-payments.csv" />
+
           <RecordPaymentDialog unpaidInvoices={unpaidInvoices} />
         </div>
       </div>

@@ -7,3 +7,10 @@ node_modules
 Dockerfile
 .dockerignore
 README.md
+npm-debug.log
+.vercel
+.vscode
+.idea
+*.tsbuildinfo
+dist
+coverage

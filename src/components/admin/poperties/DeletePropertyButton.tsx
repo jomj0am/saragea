@@ -14,7 +14,7 @@ export default function DeletePropertyButton({ propertyId }: { propertyId: strin
             await fetch(`/api/properties/${propertyId}`, { method: 'DELETE' });
             toast({ title: "Property deleted." });
             router.refresh();
-        } catch (error) {
+        } catch  {
             toast({ variant: 'destructive', title: "Error", description: "Could not delete property." });
         }
     };

@@ -1,119 +1,124 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Card } from '@/components/ui/card'
-import { useTranslations } from 'next-intl'
-import { Link } from '@/i18n/navigation'
-import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from "react";
+import { Card } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-const lifestyleCategories = [
+// Define the type for a category
+export type LifestyleCategory = {
+  titleKey: string;
+  subtitleKey: string;
+  imageUrl: string;
+  link: string;
+};
+
+// Fallback defaults if nothing is passed
+const DEFAULT_CATEGORIES: LifestyleCategory[] = [
   {
-    titleKey: 'oceanfrontLivingTitle',
-    subtitleKey: 'oceanfrontLivingSubtitle',
-    imageUrl:
-      'https://media.vrbo.com/lodging/22000000/21680000/21679400/21679317/3372ee58.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill',
-    link: '/properties?location=Beach',
+    titleKey: "oceanfrontLivingTitle",
+    subtitleKey: "oceanfrontLivingSubtitle",
+    imageUrl: "/assets/media/ShopByLifestyle/shoby1.avif",
+    link: "/properties?location=Beach",
   },
   {
-    titleKey: 'cityHubTitle',
-    subtitleKey: 'cityHubSubtitle',
-    imageUrl:
-      'https://2br-2ba-apartment-in-the-city-hub.tbilisi-hotels.com/data/Pics/OriginalPhoto/15486/1548629/1548629473/2br-2ba-apartment-in-the-city-hub-tbilisi-pic-18.JPEG',
-    link: '/properties?location=Masaki',
+    titleKey: "cityHubTitle",
+    subtitleKey: "cityHubSubtitle",
+    imageUrl: "/assets/media/ShopByLifestyle/shopby2.jpeg",
+    link: "/properties?location=Masaki",
   },
   {
-    titleKey: 'familyHomesTitle',
-    subtitleKey: 'familyHomesSubtitle',
-    imageUrl:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070',
-    link: '/properties?minRooms=3',
+    titleKey: "familyHomesTitle",
+    subtitleKey: "familyHomesSubtitle",
+    imageUrl: "/assets/media/ShopByLifestyle/shopby3.jpeg",
+    link: "/properties?minRooms=3",
   },
   {
-    titleKey: 'budgetFriendlyTitle',
-    subtitleKey: 'budgetFriendlySubtitle',
-    imageUrl:
-      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070',
-    link: '/properties?maxPrice=500000',
+    titleKey: "budgetFriendlyTitle",
+    subtitleKey: "budgetFriendlySubtitle",
+    imageUrl: "/assets/media/ShopByLifestyle/shopby4.jpeg",
+    link: "/properties?maxPrice=500000",
   },
-]
+];
 
-type Category = typeof lifestyleCategories[number]
+export default function ShopByLifestyleSection({
+  categories = DEFAULT_CATEGORIES,
+}: {
+  categories?: LifestyleCategory[];
+}) {
+  const t = useTranslations("HomePageV3.ShopByLifestyle");
+  const [active, setActive] = useState(0);
 
-export default function ShopByLifestyleSection() {
-  const t = useTranslations('HomePageV3.ShopByLifestyle')
-  const [active, setActive] = useState(0)
+  // Use passed categories or fallback
+  const displayCategories =
+    categories && categories.length > 0 ? categories : DEFAULT_CATEGORIES;
 
-  // auto-slide on mobile
+  // Auto-slide on mobile
   useEffect(() => {
     const id = setInterval(() => {
-      setActive((prev) => (prev + 1) % lifestyleCategories.length)
-    }, 8000)
-    return () => clearInterval(id)
-  }, [])
+      setActive((prev) => (prev + 1) % displayCategories.length);
+    }, 8000);
+    return () => clearInterval(id);
+  }, [displayCategories.length]);
 
   return (
     <section className="py-24 px-4 md:px-0">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-primary orboto  to-purple-500 bg-clip-text text-transparent">
-            {t('sectionTitle')}
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-primary orboto to-purple-500 bg-clip-text text-transparent">
+            {t("sectionTitle")}
           </h2>
           <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-            {t('sectionSubtitle')}
+            {t("sectionSubtitle")}
           </p>
         </div>
 
         {/* Desktop grid */}
         <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {lifestyleCategories.map((category) => (
+          {displayCategories.map((category) => (
             <LifestyleCard key={category.titleKey} category={category} t={t} />
           ))}
         </div>
 
         {/* Mobile hero + thumbs */}
         <div className="md:hidden flex flex-col gap-4">
-
-
-          {/* Main card with smooth transform (not unmounted) */}
+          {/* Main card with smooth transform */}
           <motion.div
             key={active}
             animate={{ opacity: 1, x: 0 }}
             initial={{ opacity: 0, x: 30 }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
           >
-            <LifestyleCard
-              category={lifestyleCategories[active]}
-              t={t}
-              large
-            />
+            <LifestyleCard category={displayCategories[active]} t={t} large />
           </motion.div>
 
           {/* Top dots indicator */}
           <div className="flex justify-center mb-3 gap-2">
-            {lifestyleCategories.map((_, i) => (
+            {displayCategories.map((_, i) => (
               <button
                 key={i}
                 aria-label={`Slide ${i + 1}`}
                 onClick={() => setActive(i)}
                 className={`h-2 w-2 rounded-full transition-all ${
-                  i === active ? 'bg-primary scale-110 w-4' : 'bg-gray-400/60'
+                  i === active ? "bg-primary scale-110 w-4" : "bg-gray-400/60"
                 }`}
               />
             ))}
           </div>
 
-          {/* thumbs row */}
+          {/* Thumbs row */}
           <div className="flex justify-center gap-3">
-            {lifestyleCategories.map((cat, i) => (
+            {displayCategories.map((cat, i) => (
               <button
                 key={cat.titleKey}
                 onClick={() => setActive(i)}
                 className={`relative h-20 w-20 overflow-hidden rounded-lg border-2 transition-all ${
                   i === active
-                    ? 'border-primary scale-105'
-                    : 'border-transparent opacity-70'
+                    ? "border-primary scale-105"
+                    : "border-transparent opacity-70"
                 }`}
               >
                 <Image
@@ -128,7 +133,7 @@ export default function ShopByLifestyleSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function LifestyleCard({
@@ -136,15 +141,15 @@ function LifestyleCard({
   t,
   large = false,
 }: {
-  category: Category
-  t: (key: string) => string
-  large?: boolean
+  category: LifestyleCategory;
+  t: (key: string) => string;
+  large?: boolean;
 }) {
   return (
     <Link href={category.link}>
       <Card
         className={`relative overflow-hidden group rounded-2xl ${
-          large ? 'h-80 sm:h-[28rem]' : 'h-96'
+          large ? "h-80 sm:h-[28rem]" : "h-96"
         }`}
       >
         <Image
@@ -158,9 +163,7 @@ function LifestyleCard({
           <h3 className="text-2xl font-bold drop-shadow-lg ">
             {t(category.titleKey)}
           </h3>
-          <p className="opacity-80 text-sm mt-1">
-            {t(category.subtitleKey)}
-          </p>
+          <p className="opacity-80 text-sm mt-1">{t(category.subtitleKey)}</p>
           <div className="flex items-center mt-4 text-sm font-semibold md:opacity-0 md:group-hover:opacity-100 transition-opacity">
             Explore
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -168,5 +171,5 @@ function LifestyleCard({
         </div>
       </Card>
     </Link>
-  )
+  );
 }

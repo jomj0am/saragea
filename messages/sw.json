@@ -1,71 +1,281 @@
 {
+  "Auth": {
+    "loginTitle": "Karibu Tena!",
+    "loginSubtitle": "Ingia ili kuendelea na safari yako na SARAGEA.",
+    "registerTitle": "Fungua Akaunti",
+    "registerSubtitle": "Jiunge na jumuiya yetu kupata makazi yako bora yafuatayo.",
+    "loginPrompt": "Huna akaunti?",
+    "loginAction": "Jisajili",
+    "registerPrompt": "Tayari una akaunti?",
+    "registerAction": "Ingia"
+  },
+
+  "Navbar": {
+    "home": "Nyumbani",
+    "properties": "Nyumba",
+    "about": "Kuhusu Sisi",
+    "contact": "Wasiliana"
+  },
+
+  "GlobalSearch": {
+    "placeholder": "Tafuta nyumba, vyumba, au maeneo...",
+    "noResults": "Hakuna matokeo yaliyopatikana kwa ulichotafuta.",
+    "propertiesHeading": "Nyumba",
+    "roomsHeading": "Vyumba",
+    "searching": "Inatafuta..."
+  },
+
   "HomePageV3": {
-    "heroTitle": "Nyumba Yako <primary>Ifuatayo</primary> Inakusubiri.",
-    "heroSubtitle": "Furahia upangaji rahisi na mfumo wetu wa kisasa. Tafuta, simamia, na uishi kwenye eneo lako bora bila usumbufu.",
-    "heroCtaButton": "Tazama Mali",
-    "featuredPropertiesTitle": "Mali Maarufu",
-    "whyChooseUsTitle": "Kwa Nini Utuchague?",
-    "whyChooseUsSubtitle": "Hatukupi tu mahali pa kuishi. Tunatoa mfumo kamili kwa ajili ya maisha ya kisasa, ya starehe, na salama.",
-    "whyChooseUsFeature1Title": "Salama & Uaminifu",
-    "whyChooseUsFeature1Desc": "Data na malipo yako vinalindwa na hatua za usalama za hali ya juu, kuhakikisha amani yako ya akili.",
+    "hero": {
+      "titleKey": "",
+      "subtitleKey": "",
+      "ctaButtonKey": ""
+    },
+
+    "heroTitle": "Makazi Yako <primary>Mapya</primary> Yanakusubiri.",
+    "heroSubtitle": "Pata urahisi wa kupanga na kusimamia makazi kupitia mfumo wetu wa kisasa. Tafuta, dhibiti, na furahia nafasi yako bora kwa wepesi.",
+    "heroCtaButton": "Tazama Nyumba",
+    "featuredPropertiesTitle": "Nyumba Zilizoangaziwa",
+    "featuredPropertiesSubtitle": "Chaguo bora zaidi kutoka SARAGEA. Tazama orodha maarufu zenye ziara za mtandaoni na maelezo kamili.",
+    "whyChooseUsTitle": "Kwanini Utuchague?",
+    "whyChooseUsSubtitle": "Hatutoi tu sehemu ya kuishi. Tunatoa mfumo kamili wa maisha ya kisasa, starehe na usalama.",
+    "whyChooseUsFeature1Title": "Salama & Inayoaminika",
+    "whyChooseUsFeature1Desc": "Tunakuhakikishia ulinzi wa taarifa na malipo yako kwa usalama wa kiwango cha juu.",
     "whyChooseUsFeature2Title": "Malipo Rahisi",
-    "whyChooseUsFeature2Desc": "Lipa kodi yako bila shida ukiwa popote na njia nyingi za malipo mtandaoni, zote zikiwa kwenye dashibodi yako.",
-    "whyChooseUsFeature3Title": "Msaada 24/7",
-    "whyChooseUsFeature3Desc": "Timu yetu ya msaada na matengenezo ipo tayari kukusaidia na shida yoyote wakati wote.",
-    "testimonialsTitle": "Wapangaji Wetu Wanasemaje",
+    "whyChooseUsFeature2Desc": "Lipa kodi yako kirahisi kutoka popote kwa njia mbalimbali za malipo zilizojengwa moja kwa moja ndani ya dashibodi yako.",
+    "whyChooseUsFeature3Title": "Msaada Masaa 24/7",
+    "whyChooseUsFeature3Desc": "Timu yetu ya msaada na matengenezo ipo tayari kukusaidia muda wowote.",
+    "testimonialsTitle": "Wapangaji Wanasemaje",
     "testimonialsSubtitle": "Hadithi za kweli kutoka kwa watu waliopata makazi yao kupitia sisi.",
-    "testimonial1Quote": "Mchakato ulikuwa rahisi sana. Nilipata na kuhamia kwenye nyumba yangu mpya chini ya wiki moja. Usimamizi unajibu haraka sana!",
+    "testimonial1Quote": "Utaratibu ulikuwa rahisi sana. Nilipata na kuhamia kwenye nyumba yangu mpya ndani ya wiki moja. Uongozi ni mwepesi kujibu!",
     "testimonial1Name": "Asha Juma",
     "testimonial1Location": "Mpangaji, Masaki Towers",
-    "testimonial2Quote": "Kuweza kulipa kodi na kuripoti matatizo ya matengenezo mtandaoni kumenirahisishia maisha. Ni rahisi sana.",
+    "testimonial2Quote": "Uwezo wa kulipa kodi na kuripoti matatizo ya matengenezo mtandaoni umenibadilishia maisha. Ni rahisi sana.",
     "testimonial2Name": "John Bakari",
     "testimonial2Location": "Mpangaji, Mbezi Beach Apartments",
-    "testimonial3Quote": "Huduma ya kitaalamu kweli. Majengo yanatunzwa vizuri, na timu inasaidia kila wakati. Ninapendekeza sana.",
+    "testimonial3Quote": "Huduma ya kitaalamu kabisa. Nyumba zimetunzwa vizuri na timu ni ya msaada sana. Naipendekeza sana.",
     "testimonial3Name": "Fatima Khamis",
     "testimonial3Location": "Mpangaji, Upanga Residences",
-    "ctaTitle": "Uko Tayari Kupata Nyumba Yako Mpya?",
-    "ctaSubtitle": "Jiunge na jumuiya yetu ya wapangaji wenye furaha leo. Sura yako mpya ya maisha inaanzia hapa.",
+    "ctaTitle": "Upo Tayari Kupata Makazi Mapya?",
+    "ctaSubtitle": "Jiunge na jumuiya yetu ya wapangaji wenye furaha leo. Safari yako mpya inaanza hapa.",
     "ctaButton": "Anza Sasa",
+
     "ShopByLifestyle": {
-      "sectionTitle": "Chagua kwa Mtindo wa Maisha",
-      "sectionSubtitle": "Pata nyumba inayoendana kikamilifu na mtindo wako wa maisha. Tumeandaa machaguo kwa kila hitaji na ndoto.",
+      "sectionTitle": "Chagua Kwa Mtindo wa Maisha",
+      "sectionSubtitle": "Pata nyumba inayolingana kikamilifu na mtindo wako wa maisha. Tumekusanya chaguo kwa kila hitaji.",
       "oceanfrontLivingTitle": "Maisha ya Ufukweni",
       "oceanfrontLivingSubtitle": "Amka na sauti ya mawimbi.",
-      "cityHubTitle": "Nyumba za Katikati ya Mji",
-      "cityHubSubtitle": "Ishi katikati ya matukio.",
-      "familyHomesTitle": "Makazi ya Familia",
-      "familyHomesSubtitle": "Nafasi kubwa kwa kila mtu.",
-      "budgetFriendlyTitle": "Bei Nafuu",
+      "cityHubTitle": "Apartments za Mjini",
+      "cityHubSubtitle": "Ishi katikati ya shughuli.",
+      "familyHomesTitle": "Nyumba za Familia",
+      "familyHomesSubtitle": "Nafasi ya kutosha kwa kila mtu.",
+      "budgetFriendlyTitle": "Gharama Nafuu",
       "budgetFriendlySubtitle": "Starehe bila kuathiri bajeti."
     },
+
     "Interactive3D": {
       "sectionTitle": "Gundua kwa 3D",
-      "sectionSubtitle": "Pata hisia halisi ya jengo letu kuu. Tumia modeli ya 3D hapa chini kugundua sifa zake.",
-      "propertyTitle": "Villa ya Kisasa Masaki",
-      "propertyDescription": "Jengo la kipekee lenye usanifu wa kuvutia, linalotoa anasa isiyo na kifani na mandhari ya bahari. Hii ni zaidi ya nyumba; ni kauli ya mtindo wa maisha.",
+      "sectionSubtitle": "Pata hisia halisi ya nyumba yetu nyota. Tumia mfano wa 3D hapa chini kuchunguza vipengele vyake.",
+      "propertyTitle": "Masaki Waterfront Villa",
+      "propertyDescription": "Nyumba ya kifahari yenye muundo wa kisasa na mwonekano wa kuvutia wa bahari. Hii sio tu nyumba, ni tamko la mtindo wa maisha.",
       "feature1": "Bwawa la Kuogelea la Kibinafsi",
       "feature2": "Ufikiaji wa Moja kwa Moja Ufukweni",
-      "feature3": "Mfumo wa Nyumba ya Kisasa (Smart Home)",
-      "ctaButton": "Gundua Nyingine Kama Hii"
+      "feature3": "Mfumo wa Nyumba Akili",
+      "ctaButton": "Gundua Zaidi Kama Hii"
     },
+
     "InteractiveMap": {
       "sectionTitle": "Maeneo Yetu",
-      "sectionSubtitle": "Gundua mali zetu zote jijini kwenye ramani moja. Nyumba yako ijayo ni kubonyeza tu."
+      "sectionSubtitle": "Gundua nyumba zetu zote kwenye ramani moja maalum. Makazi yako mapya yanakungoja."
     },
+
     "RecentlyViewed": {
-      "sectionTitle": "Mali Ulizotazama Hivi Karibuni"
+      "sectionTitle": "Nyumba Ulizotazama Hivi Karibuni"
     }
   },
-    "ContactPage": {
-    "heroTitle": "Wasiliana Nasi",
-    "heroSubtitle": "Tupo hapa kukusaidia. Iwe una swali kuhusu mali zetu au unahitaji msaada, tuko tayari kukuhudumia.",
-    "detailsTitle": "Taarifa za Mawasiliano",
-    "address": "123 Barabara ya Masaki, Dar es Salaam, Tanzania",
-    "phone1": "+255 784 123 456 (Mauzo na Maswali)",
-    "phone2": "+255 655 654 321 (Msaada)",
-    "email": "info@saragea.co.tz",
-    "formTitle": "Tutumie Ujumbe",
-    "formSubtitle": "Una swali maalum? Jaza fomu hapa chini na timu yetu itakujibu haraka iwezekanavyo."
-  }
 
+  "AboutPage": {
+    "heroTitle": "Karibu SARAGEA Apartments",
+    "heroSubtitle": "Maisha ya Kisasa Yaliyojaa Starehe na Usimamizi Wa Kujali.",
+    "storyTitle": "Hadithi Yetu",
+    "storyParagraph1": "SARAGEA Apartments ilianzishwa kwa lengo la kutoa makazi bora, salama, na yenye starehe. Tunaamini nyumba ni zaidi ya kuta; ni msingi wa maisha yako.",
+    "storyParagraph2": "Tulivyoendelea kukua, tuliona umuhimu wa kuchanganya huduma zetu za kitamaduni na teknolojia ya kisasa. Hapo ndipo tulipounda jukwaa hili la kidigitali ili kufanya kukodisha kuwa rahisi na bila usumbufu.",
+    "digitalTitle": "Inavyofanya Kazi: Safari Yako ya Kukodisha Kidigitali",
+    "digitalSubtitle": "Tumeweka kila kitu kwenye udhibiti wako.",
+    "step1Title": "Gundua & Chunguza",
+    "step1Desc": "Tazama nyumba zetu kwa picha za ubora wa juu, ziara za 3D, na maelezo kamili.",
+    "step2Title": "Hifadhi & Omba",
+    "step2Desc": "Ukishapata chumba unachokipenda, unaweza kukihifadhi na kupakia nyaraka zako mtandaoni.",
+    "step3Title": "Malipo ya Kiotomatiki",
+    "step3Desc": "Pokea Ankara kila mwezi na ulipe kodi mtandaoni kupitia Mobile Money au Benki kwa urahisi.",
+    "step4Title": "Msaada wa Haraka",
+    "step4Desc": "Ripoti hitilafu za matengenezo na fuatilia hatua kwa hatua hadi zitakapotatuliwa.",
+    "valuesTitle": "Misingi Yetu",
+    "value1Title": "Usalama",
+    "value1Desc": "Usalama wako ni kipaumbele chetu.",
+    "value2Title": "Starehe",
+    "value2Desc": "Tunakupa mazingira safi na yenye huduma muhimu.",
+    "value3Title": "Uwazi",
+    "value3Desc": "Mchakato wote ni wazi na wa kueleweka."
+  },
+
+  "ContactPage": {
+    "heroTitle": "Wasiliana Nasi",
+    "heroSubtitle": "Tupo tayari kukusaidia.",
+    "ctaGetInTouch": "Wasiliana Nasi Sasa",
+    "ctaButton": "Tuma Ujumbe",
+    "detailsTitle": "Taarifa za Mawasiliano",
+    "addressLabel": "Anwani Yetu",
+    "address": "123 Barabara ya Masaki, Dar es Salaam, Tanzania",
+    "phoneLabel": "Nambari za Simu",
+    "phone1": "+255 784 123 456 (Mauzo & Maswali)",
+    "phone2": "+255 655 654 321 (Msaada)",
+    "emailLabel": "Barua Pepe",
+    "email": "info@saragea.co.tz",
+    "hoursLabel": "Muda wa Kazi",
+    "hours1": "Mon - Ijumaa: 9:00 AM - 6:00 PM",
+    "hours2": "Jumamosi: 10:00 AM - 4:00 PM",
+    "formTitle": "Tuma Ujumbe",
+    "formSubtitle": "Una swali maalum? Tutakujibu haraka iwezekanavyo.",
+    "socialTitle": "Tufuatilie",
+    "bottomCtaTitle": "Tayari Kutafuta Nyumba Unayoitamani?",
+    "bottomCtaSubtitle": "Wasiliana nasi leo tikuongoze.",
+    "bottomCtaContact": "Wasiliana Nasi Sasa",
+    "bottomCtaCall": "Piga Moja kwa Moja",
+    "formNameLabel": "Jina Lako",
+    "formNamePlaceholder": "Ingiza jina lako kamili",
+    "formEmailLabel": "Barua Pepe",
+    "formEmailPlaceholder": "Ingiza barua pepe yako",
+    "formSubjectLabel": "Mada",
+    "formSubjectPlaceholder": "Hili linahusu nini?",
+    "formMessageLabel": "Ujumbe",
+    "formMessagePlaceholder": "Tuambie tunavyoweza kukusaidia...",
+    "formSendButton": "Tuma Ujumbe",
+    "formSendingButton": "Inatuma...",
+    "formSuccessToastTitle": "Ujumbe Umetumwa!",
+    "formSuccessToastDesc": "Tutakujibu muda mfupi ujao.",
+    "formErrorToastTitle": "Hitilafu",
+    "formErrorToastDesc": "Imeshindikana kutuma ujumbe. Tafadhali jaribu tena.",
+    "formResponseNotice": "Kwa kawaida tunajibu ndani ya siku moja ya kazi."
+  },
+
+  "ZodErrors": {
+    "nameRequired": "Tafadhali ingiza jina lako.",
+    "emailInvalid": "Tafadhali ingiza barua pepe sahihi.",
+    "subjectRequired": "Tafadhali toa mada.",
+    "messageRequired": "Ujumbe lazima uwe angalau herufi 10."
+  },
+
+  "Onboarding": {
+    "welcomeTitle": "Karibu SARAGEA Apartments!",
+    "welcomeSubtitle": "Safari yako ya kupata makazi bora inaanza hapa.",
+    "personalizationTitle": "Binafsisha Uzoefu Wako",
+    "personalizationSubtitle": "Chagua lugha na mwonekano unaoupenda.",
+    "languageLabel": "Lugha",
+    "themeLabel": "Muonekano",
+    "doneTitle": "Umemaliza!",
+    "doneSubtitle": "Furahia kuchunguza nyumba zetu.",
+    "nextButton": "Endelea",
+    "startButton": "Anza Kuchunguza"
+  },
+
+  "CartPage": {
+    "pageTitle": "Hifadhi Zako",
+    "emptyTitle": "Huna nyumba ulizohifadhi",
+    "emptySubtitle": "Inaonekana bado hujaongeza nyumba yoyote.",
+    "browseButton": "Tazama Nyumba",
+    "summaryTitle": "Muhtasari wa Hifadhi",
+    "subtotalLabel": "Jumla ya Awali ({itemCount, plural, =1 {item 1} other {items #}})",
+    "feeLabel": "Ada ya Huduma",
+    "totalLabel": "Jumla kwa Mwezi",
+    "checkoutButton": "Endelea na Kuhifadhi",
+    "paymentMethodsTitle": "Malipo Salama Kupitia:",
+    "itemRemovedToast": "Chumba Kimeondolewa",
+    "itemRemovedDesc": "{roomType} kimeondolewa kwenye orodha yako."
+  },
+
+  "RoomDetailsPage": {
+    "backToProperty": "Rudi kwa {propertyName}",
+    "roomLabel": "Chumba",
+    "statusAvailable": "Kinapatikana",
+    "statusOccupied": "Kimelishiwa",
+    "pricePerMonth": "/ mwezi",
+    "descriptionTitle": "Kuhusu Chumba Hiki",
+    "amenitiesTitle": "Kinachopatikana Hapa",
+    "noDescription": "Hakuna maelezo ya ziada kuhusu chumba hiki kwa sasa. Tafadhali wasiliana na msimamizi wa nyumba kwa maelezo zaidi.",
+    "reservationCta": "Hifadhi Chumba Hiki",
+    "reservationNotice": "Hutozwi kwa sasa. Hii itakuhifadhia nafasi wakati unaandaa nyaraka zako.",
+    "propertyDetailsTitle": "Taarifa za Nyumba"
+  },
+
+  "FaqPage": {
+    "heroTitle": "Tunawezaje kukusaidia?",
+    "heroSubtitle": "Pata majibu ya maswali yanayoulizwa mara kwa mara kuhusu maisha ya SARAGEA.",
+    "searchPlaceholder": "Tafuta majibu...",
+    "categories": {
+      "general": "Maswali ya Jumla",
+      "booking": "Kodi & Uhifadhi",
+      "maintenance": "Matengenezo",
+      "security": "Akaunti & Usalama"
+    },
+    "questions": {
+      "q1": "Kodi ya mwezi inajumuisha nini?",
+      "a1": "Kodi ya mwezi kawaida inajumuisha maji na ulinzi wa saa 24. Umeme na Mtandao hulipiwa kulingana na matumizi ya kila chumba.",
+      "q2": "Ninawezaje kuhifadhi (reserve) chumba?",
+      "a2": "Tafuta chumba unachokipenda, bonyeza 'Hifadhi Sasa', na ufuate maelekezo ya kupakia nyaraka zako. Timu yetu itapitia ombi lako ndani ya saa 24.",
+      "q3": "Mnakubali njia gani za malipo?",
+      "a3": "Tunakubali M-Pesa, Tigo Pesa, Airtel Money, na Benki kupitia mfumo wetu wa malipo ya kidigitali.",
+      "q4": "Ninaripotije tatizo la matengenezo?",
+      "a4": "Ingia kwenye dashibodi yako, nenda sehemu ya Matengenezo, na bonyeza 'Tuma Ombi Jipya'. Unaweza kufuatilia hatua za marekebisho mubashara.",
+      "q5": "Je, kuna amana (deposit) ya usalama?",
+      "a5": "Ndiyo, tunahitaji amana ya mwezi mmoja kabla ya kuhamia. Hii inarudishwa mkataba wako utakapofika mwisho.",
+      "q6": "Je, naweza kutumia mitandao ya kijamii kuingia?",
+      "a6": "Ndiyo kabisa! Unaweza kutumia Google, Facebook, au Apple kuingia kwenye akaunti yako kwa urahisi."
+    },
+    "stillHaveQuestions": "Bado una maswali?",
+    "contactSupport": "Hujapata unachotafuta? Wasiliana na timu yetu ya msaada sasa.",
+    "contactBtn": "Wasiliana Nasi"
+  },
+  "PrivacyPage": {
+    "heroTitle": "Sera ya Faragha",
+    "heroSubtitle": "Faragha yako ni kipaumbele chetu. Jifunze jinsi tunavyolinda na kudhibiti data zako SARAGEA.",
+    "lastUpdated": "Ilisasishwa mwisho: Januari 07, 2026",
+    "sections": {
+      "s1_title": "1. Taarifa Tunazokusanya",
+      "s1_content": "Tunakusanya taarifa unazotoa kwetu moja kwa moja, kama vile jina, barua pepe, namba ya simu, na nyaraka za utambulisho unapohifadhi chumba au kufungua akaunti.",
+      "s2_title": "2. Jinsi Tunavyotumia Data Zako",
+      "s2_content": "Data zako hutumika kushughulikia uhifadhi wako, kusimamia mikataba ya kodi, kufanya malipo kwa usalama, na kukupa taarifa za matengenezo.",
+      "s3_title": "3. Ushirikishaji wa Data",
+      "s3_content": "Hatuuzi data zako. Tunashiriki tu taarifa muhimu na washirika wanaoaminika kama mifumo ya malipo (Selcom, Flutterwave) na hifadhi ya kidigitali (Cloudinary) ili kutimiza huduma zetu.",
+      "s4_title": "4. Usalama wa Data",
+      "s4_content": "Tunatumia usimbaji wa bit-256 na itifaki salama za seva ili kuhakikisha nyaraka zako na taarifa za malipo zinalindwa dhidi ya ufikiaji usioidhinishwa.",
+      "s5_title": "5. Haki Zako",
+      "s5_content": "Una haki ya kupata, kurekebisha, au kuomba kufutwa kwa data zako za kibinafsi wakati wowote kupitia dashibodi yako au kwa kuwasiliana na msaada."
+    },
+    "contactTitle": "Maswali kuhusu Faragha?",
+    "contactDesc": "Ikiwa una swali lolote kuhusu sera hii, tafadhali wasiliana na timu yetu ya sheria.",
+    "contactBtn": "Tuma Barua Pepe"
+  },
+  "TermsPage": {
+    "heroTitle": "Masharti ya Huduma",
+    "heroSubtitle": "Tafadhali soma masharti haya kwa umakini. Yanaongoza matumizi yako ya mfumo wa SARAGEA na huduma za upangaji.",
+    "lastUpdated": "Ilisasishwa mwisho: Januari 07, 2026",
+    "sections": {
+      "s1_title": "1. Kubali Masharti",
+      "s1_content": "Kwa kutumia SARAGEA, unakubali kufuata Masharti haya ya Huduma na sheria pamoja na kanuni zote husika nchini Tanzania.",
+      "s2_title": "2. Sifa za Mtumiaji",
+      "s2_content": "Lazima uwe na umri wa angalau miaka 18 ili kufungua akaunti au kuhifadhi nyumba. Kwa kutumia tovuti hii, unathibitisha kuwa unatimiza hitaji hili la umri.",
+      "s3_title": "3. Uhifadhi & Malipo",
+      "s3_content": "Uhifadhi unategemea upatikanaji wa vyumba na uhakiki wa nyaraka. Malipo yanayofanywa kupitia mfumo huu hayarudishwi isipokuwa kama imeelezwa vinginevyo kwenye mkataba wako wa kodi.",
+      "s4_title": "4. Wajibu wa Mpangaji",
+      "s4_content": "Wapangaji wanakubali kutoa taarifa sahihi, kutunza nyumba katika hali nzuri, na kuripoti matatizo yoyote ya matengenezo haraka kupitia dashibodi.",
+      "s5_title": "5. Kufunga Akaunti",
+      "s5_content": "Tunahifadhi haki ya kusitisha au kufuta akaunti zinazovunja masharti haya, zinazohusika na udanganyifu, au zinazoshindwa kukamilisha malipo yanayohitajika.",
+      "s6_title": "6. Dhima (Liability)",
+      "s6_content": "SARAGEA haitawajibika kwa uharibifu wa kiofisi au matokeo yanayotokana na matumizi yako ya mfumo au kukatika kwa huduma kwa muda."
+    },
+    "agreeTitle": "Una Maswali?",
+    "agreeDesc": "Ikiwa unahitaji ufafanuzi kuhusu masharti yoyote haya, timu yetu ya msaada itafurahi kukusaidia.",
+    "contactBtn": "Wasiliana na Msaada"
+  }
 }

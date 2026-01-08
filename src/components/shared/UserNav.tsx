@@ -1,9 +1,9 @@
 // components/shared/UserNav.tsx
-"use client"
+"use client";
 
-import { signOut, useSession } from "next-auth/react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { signOut, useSession } from "next-auth/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,24 +12,24 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import Link from "next/link"
-import { LayoutDashboard, LogOut, User } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import { LayoutDashboard, LogOut, User } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function UserNav() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
-  if (!session?.user) return null
+  if (!session?.user) return null;
 
-  const userInitial = session.user.name?.charAt(0).toUpperCase() || "U"
+  const userInitial = session.user.name?.charAt(0).toUpperCase() || "U";
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-10 w-10 rounded-full p-0 overflow-hidden hover:scale-105 transition-transform"
+          className="relative h-9 w-9 rounded-full p-0 overflow-hidden hover:scale-105 transition-transform"
         >
           <Avatar className="h-10 w-10 ring-2 ring-transparent hover:ring-indigo-400 transition-all duration-300">
             <AvatarImage
@@ -103,5 +103,5 @@ export default function UserNav() {
         </DropdownMenuContent>
       </AnimatePresence>
     </DropdownMenu>
-  )
+  );
 }

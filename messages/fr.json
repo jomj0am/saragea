@@ -1,70 +1,210 @@
 {
+  "Auth": {
+    "loginTitle": "Bon Retour !",
+    "loginSubtitle": "Connectez-vous pour continuer votre expérience avec SARAGEA.",
+    "registerTitle": "Créer un Compte",
+    "registerSubtitle": "Rejoignez notre communauté pour trouver votre prochain logement idéal.",
+    "loginPrompt": "Vous n'avez pas de compte ?",
+    "loginAction": "S'inscrire",
+    "registerPrompt": "Vous avez déjà un compte ?",
+    "registerAction": "Se connecter"
+  },
+
+  "Navbar": {
+    "home": "Accueil",
+    "properties": "Propriétés",
+    "about": "À Propos",
+    "contact": "Contact"
+  },
+
+  "GlobalSearch": {
+    "placeholder": "Recherchez des propriétés, des chambres ou des lieux...",
+    "noResults": "Aucun résultat trouvé pour votre recherche.",
+    "propertiesHeading": "Propriétés",
+    "roomsHeading": "Chambres",
+    "searching": "Recherche en cours..."
+  },
+
   "HomePageV3": {
+    "hero": {
+      "titleKey": "",
+      "subtitleKey": "",
+      "ctaButtonKey": ""
+    },
+
     "heroTitle": "Votre Prochaine <primary>Maison</primary> Vous Attend.",
-    "heroSubtitle": "Vivez une expérience de location transparente avec notre plateforme moderne. Trouvez, gérez et installez-vous dans votre espace parfait sans effort.",
+    "heroSubtitle": "Découvrez une location fluide grâce à notre plateforme moderne. Trouvez, gérez et installez-vous dans votre espace idéal facilement.",
     "heroCtaButton": "Explorer les Propriétés",
     "featuredPropertiesTitle": "Propriétés en Vedette",
+    "featuredPropertiesSubtitle": "Le meilleur de SARAGEA. Découvrez nos annonces les plus populaires avec visites virtuelles et détails complets.",
     "whyChooseUsTitle": "Pourquoi Nous Choisir ?",
-    "whyChooseUsSubtitle": "Nous offrons plus qu'un simple lieu de vie. Nous proposons un écosystème complet pour un style de vie moderne, confortable et sécurisé.",
+    "whyChooseUsSubtitle": "Nous offrons bien plus qu'un lieu où vivre. Nous fournissons un écosystème complet pour un mode de vie moderne, confortable et sécurisé.",
     "whyChooseUsFeature1Title": "Sécurisé & Fiable",
-    "whyChooseUsFeature1Desc": "Vos données et paiements sont protégés par des mesures de sécurité de premier ordre, garantissant votre tranquillité d'esprit.",
+    "whyChooseUsFeature1Desc": "Vos données et paiements sont protégés par des mesures de sécurité avancées, pour une tranquillité totale.",
     "whyChooseUsFeature2Title": "Paiements Simplifiés",
-    "whyChooseUsFeature2Desc": "Payez votre loyer sans effort depuis n'importe où avec de multiples options de paiement en ligne, toutes intégrées à votre tableau de bord.",
-    "whyChooseUsFeature3Title": "Support 24/7",
-    "whyChooseUsFeature3Desc": "Nos équipes de support et de maintenance dédiées sont toujours disponibles pour vous aider en cas de problème.",
-    "testimonialsTitle": "Ce que Disent Nos Locataires",
-    "testimonialsSubtitle": "Des histoires vraies de personnes qui ont trouvé leur chez-soi avec nous.",
-    "testimonial1Quote": "Le processus a été incroyablement fluide. J'ai trouvé et emménagé dans mon nouvel appartement en moins d'une semaine. La gestion est très réactive !",
+    "whyChooseUsFeature2Desc": "Payez votre loyer facilement, où que vous soyez, grâce à plusieurs méthodes de paiement intégrées.",
+    "whyChooseUsFeature3Title": "Assistance 24/7",
+    "whyChooseUsFeature3Desc": "Nos équipes de support et de maintenance sont disponibles à tout moment pour vous aider.",
+    "testimonialsTitle": "Ce que Disent nos Locataires",
+    "testimonialsSubtitle": "Des témoignages authentiques de personnes ayant trouvé leur maison avec nous.",
+    "testimonial1Quote": "Le processus était incroyablement simple. J'ai trouvé et emménagé dans mon nouvel appartement en moins d'une semaine. La gestion est très réactive !",
     "testimonial1Name": "Asha Juma",
     "testimonial1Location": "Locataire, Masaki Towers",
-    "testimonial2Quote": "Pouvoir payer mon loyer et signaler les problèmes de maintenance en ligne a changé la donne. C'est tellement pratique.",
+    "testimonial2Quote": "Pouvoir payer mon loyer et signaler les problèmes en ligne a tout changé. C'est tellement pratique.",
     "testimonial2Name": "John Bakari",
     "testimonial2Location": "Locataire, Mbezi Beach Apartments",
-    "testimonial3Quote": "Un service vraiment professionnel. Les propriétés sont bien entretenues et l'équipe est toujours serviable. Fortement recommandé.",
+    "testimonial3Quote": "Un service vraiment professionnel. Les propriétés sont bien entretenues et l’équipe est toujours disponible. Je recommande vivement.",
     "testimonial3Name": "Fatima Khamis",
     "testimonial3Location": "Locataire, Upanga Residences",
-    "ctaTitle": "Prêt à Trouver Votre Nouveau Chez-vous ?",
-    "ctaSubtitle": "Rejoignez notre communauté de locataires heureux dès aujourd'hui. Votre prochain chapitre commence ici.",
-    "ctaButton": "Commencez Maintenant",
+    "ctaTitle": "Prêt(e) à Trouver Votre Nouveau Logement ?",
+    "ctaSubtitle": "Rejoignez notre communauté de locataires heureux dès aujourd’hui.",
+    "ctaButton": "Commencer Maintenant",
+
     "ShopByLifestyle": {
-      "sectionTitle": "Explorer par Style de Vie",
-      "sectionSubtitle": "Trouvez une maison qui correspond parfaitement à votre mode de vie. Nous avons préparé des sélections pour chaque besoin et aspiration.",
-      "oceanfrontLivingTitle": "Vie en Bord de Mer",
+      "sectionTitle": "Choisir selon le Style de Vie",
+      "sectionSubtitle": "Trouvez un logement qui correspond parfaitement à votre mode de vie.",
+      "oceanfrontLivingTitle": "Vue sur l'Océan",
       "oceanfrontLivingSubtitle": "Réveillez-vous au son des vagues.",
-      "cityHubTitle": "Appartements au Centre-Ville",
+      "cityHubTitle": "Appartements en Centre-Ville",
       "cityHubSubtitle": "Vivez au cœur de l'action.",
       "familyHomesTitle": "Maisons Familiales",
-      "familyHomesSubtitle": "Un espace de vie spacieux pour tous.",
-      "budgetFriendlyTitle": "Abordable",
-      "budgetFriendlySubtitle": "Le confort sans compromis."
+      "familyHomesSubtitle": "De l’espace pour tout le monde.",
+      "budgetFriendlyTitle": "Économique",
+      "budgetFriendlySubtitle": "Confort sans compromis."
     },
+
     "Interactive3D": {
-      "sectionTitle": "Explorez en 3D",
-      "sectionSubtitle": "Faites-vous une idée réelle de notre propriété phare. Interagissez avec le modèle 3D ci-dessous pour explorer ses caractéristiques.",
-      "propertyTitle": "La Villa au Bord de l'Eau de Masaki",
-      "propertyDescription": "Un chef-d'œuvre architectural époustouflant offrant un luxe inégalé et des vues imprenables sur l'océan. C'est plus qu'une maison ; c'est une déclaration de style de vie.",
-      "feature1": "Piscine à Débordement Privée",
+      "sectionTitle": "Explorer en 3D",
+      "sectionSubtitle": "Obtenez une véritable impression de notre propriété phare.",
+      "propertyTitle": "La Villa Masaki Waterfront",
+      "propertyDescription": "Une œuvre architecturale offrant luxe et vue spectaculaire sur l'océan. Plus qu'une maison, une expérience.",
+      "feature1": "Piscine Privée à Débordement",
       "feature2": "Accès Direct à la Plage",
       "feature3": "Intégration Maison Intelligente",
-      "ctaButton": "Découvrez-en d'Autres Similaires"
+      "ctaButton": "Découvrir Plus"
     },
+
     "InteractiveMap": {
       "sectionTitle": "Nos Emplacements",
-      "sectionSubtitle": "Découvrez toutes nos propriétés à travers la ville sur une seule carte interactive. Votre prochaine maison n'est qu'à un clic."
+      "sectionSubtitle": "Découvrez toutes nos propriétés sur une carte interactive."
     },
+
     "RecentlyViewed": {
-      "sectionTitle": "Propriétés Récemment Consultées"
+      "sectionTitle": "Propriétés Consultées Récemment"
     }
   },
-    "ContactPage": {
+
+  "AboutPage": {
+    "heroTitle": "Bienvenue à SARAGEA Appartements",
+    "heroSubtitle": "Une vie moderne gérée avec attention et professionnalisme.",
+    "storyTitle": "Notre Histoire",
+    "storyParagraph1": "SARAGEA Appartements a été fondé avec la vision d'offrir des logements de haute qualité, sécurisés et confortables.",
+    "storyParagraph2": "Avec le temps, nous avons intégré la technologie pour rendre l'expérience de location fluide et simplifiée.",
+    "digitalTitle": "Comment Ça Marche",
+    "digitalSubtitle": "Nous avons automatisé tout le processus.",
+    "step1Title": "Découvrir & Explorer",
+    "step1Desc": "Parcourez nos propriétés avec photos HD, visites 3D et filtres personnalisés.",
+    "step2Title": "Réserver & Postuler",
+    "step2Desc": "Réservez instantanément et téléversez vos documents en toute sécurité.",
+    "step3Title": "Paiements Automatisés",
+    "step3Desc": "Recevez des factures mensuelles et payez en ligne en quelques clics.",
+    "step4Title": "Support Instantané",
+    "step4Desc": "Signalez des problèmes et suivez leur résolution en temps réel.",
+    "valuesTitle": "Nos Valeurs",
+    "value1Title": "Sécurité",
+    "value1Desc": "Votre sécurité est notre priorité.",
+    "value2Title": "Confort",
+    "value2Desc": "Des espaces entretenus avec soins et services essentiels.",
+    "value3Title": "Transparence",
+    "value3Desc": "Des processus clairs, simples et honnêtes."
+  },
+
+  "ContactPage": {
     "heroTitle": "Contactez-nous",
-    "heroSubtitle": "Nous sommes là pour vous aider. Que vous ayez une question sur nos propriétés ou besoin de support, nous sommes prêts à vous assister.",
+    "heroSubtitle": "Nous sommes là pour vous aider.",
+    "ctaGetInTouch": "Nous Contacter",
+    "ctaButton": "Envoyer un Message",
     "detailsTitle": "Coordonnées",
-    "address": "123 Route de Masaki, Dar es Salaam, Tanzanie",
-    "phone1": "+255 784 123 456 (Ventes & Renseignements)",
+    "addressLabel": "Adresse",
+    "address": "123 Route Masaki, Dar es Salaam, Tanzanie",
+    "phoneLabel": "Numéros de Téléphone",
+    "phone1": "+255 784 123 456 (Ventes & Questions)",
     "phone2": "+255 655 654 321 (Support)",
+    "emailLabel": "Adresse Email",
     "email": "info@saragea.co.tz",
-    "formTitle": "Envoyez-nous un Message",
-    "formSubtitle": "Vous avez une question spécifique ? Remplissez le formulaire ci-dessous et notre équipe vous répondra dans les plus brefs délais."
+    "hoursLabel": "Heures d'Ouverture",
+    "hours1": "Lun - Ven : 9h00 - 18h00",
+    "hours2": "Sam : 10h00 - 16h00",
+    "formTitle": "Envoyer un Message",
+    "formSubtitle": "Posez-nous votre question et nous vous répondrons rapidement.",
+    "socialTitle": "Nous Suivre",
+    "bottomCtaTitle": "Prêt(e) à Trouver Votre Propriété idéale ?",
+    "bottomCtaSubtitle": "Contactez-nous et laissez-nous vous guider.",
+    "bottomCtaContact": "Nous Contacter",
+    "bottomCtaCall": "Appeler Directement",
+    "formNameLabel": "Votre Nom",
+    "formNamePlaceholder": "Entrez votre nom complet",
+    "formEmailLabel": "Votre Email",
+    "formEmailPlaceholder": "Entrez votre adresse email",
+    "formSubjectLabel": "Sujet",
+    "formSubjectPlaceholder": "De quoi s'agit-il ?",
+    "formMessageLabel": "Message",
+    "formMessagePlaceholder": "Dites-nous comment nous pouvons vous aider...",
+    "formSendButton": "Envoyer",
+    "formSendingButton": "Envoi...",
+    "formSuccessToastTitle": "Message Envoyé !",
+    "formSuccessToastDesc": "Nous reviendrons vers vous sous peu.",
+    "formErrorToastTitle": "Erreur",
+    "formErrorToastDesc": "Impossible d'envoyer le message. Veuillez réessayer.",
+    "formResponseNotice": "Nous répondons généralement sous 24 heures."
+  },
+
+  "ZodErrors": {
+    "nameRequired": "Veuillez entrer votre nom.",
+    "emailInvalid": "Veuillez entrer une adresse email valide.",
+    "subjectRequired": "Veuillez indiquer un sujet.",
+    "messageRequired": "Le message doit contenir au moins 10 caractères."
+  },
+
+  "Onboarding": {
+    "welcomeTitle": "Bienvenue sur SARAGEA Appartements !",
+    "welcomeSubtitle": "Votre expérience commence maintenant.",
+    "personalizationTitle": "Personnalisez votre expérience",
+    "personalizationSubtitle": "Choisissez votre langue et votre thème d'affichage.",
+    "languageLabel": "Langue",
+    "themeLabel": "Apparence",
+    "doneTitle": "C'est Parti !",
+    "doneSubtitle": "Profitez de votre navigation.",
+    "nextButton": "Suivant",
+    "startButton": "Commencer"
+  },
+
+  "CartPage": {
+    "pageTitle": "Vos Réservations",
+    "emptyTitle": "Aucune réservation pour le moment",
+    "emptySubtitle": "Vous n'avez ajouté aucune propriété.",
+    "browseButton": "Explorer les Propriétés",
+    "summaryTitle": "Résumé de la Réservation",
+    "subtotalLabel": "Sous-total ({itemCount, plural, =1 {1 article} other {# articles}})",
+    "feeLabel": "Frais de Service",
+    "totalLabel": "Total par Mois",
+    "checkoutButton": "Continuer",
+    "paymentMethodsTitle": "Paiements Sécurisés via :",
+    "itemRemovedToast": "Chambre retirée",
+    "itemRemovedDesc": "{roomType} a été retirée de vos réservations."
+  },
+
+  "RoomDetailsPage": {
+    "backToProperty": "Retour à {propertyName}",
+    "roomLabel": "Chambre",
+    "statusAvailable": "Disponible",
+    "statusOccupied": "Occupée",
+    "pricePerMonth": "/ mois",
+    "descriptionTitle": "À propos de cette Chambre",
+    "amenitiesTitle": "Équipements",
+    "noDescription": "Aucune description détaillée n’est disponible pour le moment.",
+    "reservationCta": "Réserver cette Chambre",
+    "reservationNotice": "Vous ne serez pas facturé maintenant. La réservation est juste temporaire.",
+    "propertyDetailsTitle": "Informations sur la Propriété"
   }
 }

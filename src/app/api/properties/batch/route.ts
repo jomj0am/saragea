@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
         // Panga matokeo kulingana na mpangilio wa IDs
         const sortedProperties = idArray.map(id => properties.find(p => p.id === id)).filter(Boolean);
         return NextResponse.json(sortedProperties);
-    } catch (error) {
+    } catch  {
         return NextResponse.json({ message: "Failed to fetch properties" }, { status: 500 });
     }
 }

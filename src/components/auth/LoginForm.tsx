@@ -1,13 +1,13 @@
 // components/auth/LoginForm.tsx
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { signIn } from 'next-auth/react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useSearchParams } from 'next/navigation';
-import { useToast } from '@/components/ui/use-toast';
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useSearchParams } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 import {
   Form,
   FormControl,
@@ -15,70 +15,78 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { LoadingButton } from '@/components/ui/loading-button';
-import { Button } from '@/components/ui/button';
-import { FcGoogle } from 'react-icons/fc';
-import { FaApple, FaFacebook } from 'react-icons/fa';
-import { Mail, Loader2, ArrowLeft } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { LoadingButton } from "@/components/ui/loading-button";
+import { Button } from "@/components/ui/button";
+import { FcGoogle } from "react-icons/fc";
+import { FaApple, FaFacebook } from "react-icons/fa";
+import { Mail, Loader2, ArrowLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // ✅ Zod schemas
 const passwordLoginSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address.' }),
-  password: z.string().min(1, { message: 'Password is required.' }),
+  email: z.string().email({ message: "Invalid email address." }),
+  password: z.string().min(1, { message: "Password is required." }),
 });
 const magicLinkSchema = z.object({
-  email: z.string().email({ message: 'Enter a valid email to receive a link.' }),
+  email: z
+    .string()
+    .email({ message: "Enter a valid email to receive a link." }),
 });
 
 export default function LoginForm() {
   const { toast } = useToast();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
-  const [view, setView] = useState<'main' | 'magiclink'>('main');
+  const [view, setView] = useState<"main" | "magiclink">("main");
   const [isLoading, setIsLoading] = useState<string | null>(null);
 
   // forms
   const passwordForm = useForm<z.infer<typeof passwordLoginSchema>>({
     resolver: zodResolver(passwordLoginSchema),
-    defaultValues: { email: '', password: '' },
+    defaultValues: { email: "", password: "" },
   });
   const magicLinkForm = useForm<z.infer<typeof magicLinkSchema>>({
     resolver: zodResolver(magicLinkSchema),
-    defaultValues: { email: '' },
+    defaultValues: { email: "" },
   });
 
   // handlers
-  const onPasswordSubmit = async (values: z.infer<typeof passwordLoginSchema>) => {
-    setIsLoading('password');
-    const result = await signIn('credentials', { ...values, redirect: false });
+  const onPasswordSubmit = async (
+    values: z.infer<typeof passwordLoginSchema>
+  ) => {
+    setIsLoading("password");
+    const result = await signIn("credentials", { ...values, redirect: false });
     setIsLoading(null);
     if (result?.error) {
       toast({
-        variant: 'destructive',
-        title: 'Login Failed',
-        description: 'Invalid email or password.',
+        variant: "destructive",
+        title: "Login Failed",
+        description: "Invalid email or password.",
       });
     } else {
-      toast({ title: 'Welcome back!' });
+      toast({ title: "Welcome back!" });
       window.location.href = callbackUrl;
     }
   };
 
   const onMagicLinkSubmit = async (values: z.infer<typeof magicLinkSchema>) => {
-    setIsLoading('magiclink');
-    await signIn('email', { email: values.email, redirect: false, callbackUrl });
+    setIsLoading("magiclink");
+    await signIn("email", {
+      email: values.email,
+      redirect: false,
+      callbackUrl,
+    });
     setIsLoading(null);
     toast({
-      title: 'Magic Link Sent ✨',
-      description: 'Check your inbox for a password-free login link.',
+      title: "Magic Link Sent ✨",
+      description: "Check your inbox for a password-free login link.",
     });
   };
 
-  const handleSocialLogin = (provider: 'google' | 'facebook' | 'apple') => {
+  const handleSocialLogin = (provider: "google" | "facebook" | "apple") => {
     setIsLoading(provider);
     signIn(provider, { callbackUrl });
   };
@@ -86,7 +94,7 @@ export default function LoginForm() {
   return (
     <div className="overflow-hidden">
       <AnimatePresence mode="wait">
-        {view === 'main' && (
+        {view === "main" && (
           <motion.div
             key="main"
             initial={{ opacity: 0, y: 20 }}
@@ -147,14 +155,14 @@ export default function LoginForm() {
                     variant="link"
                     size="sm"
                     className="p-0 h-auto text-indigo-500 hover:text-indigo-600"
-                    onClick={() => setView('magiclink')}
+                    onClick={() => setView("magiclink")}
                   >
                     Forgot password?
                   </Button>
                 </div>
                 <LoadingButton
                   type="submit"
-                  loading={isLoading === 'password'}
+                  loading={isLoading === "password"}
                   className="
                     w-full rounded-xl
                     bg-gradient-to-r from-indigo-500 to-purple-600
@@ -182,11 +190,11 @@ export default function LoginForm() {
             <div className="grid grid-cols-3 gap-3">
               <Button
                 variant="outline"
-                onClick={() => handleSocialLogin('google')}
+                onClick={() => handleSocialLogin("google")}
                 disabled={!!isLoading}
                 className="rounded-xl hover:bg-white/60 dark:hover:bg-zinc-800/60"
               >
-                {isLoading === 'google' ? (
+                {isLoading === "google" ? (
                   <Loader2 className="animate-spin" />
                 ) : (
                   <FcGoogle className="h-5 w-5" />
@@ -194,11 +202,11 @@ export default function LoginForm() {
               </Button>
               <Button
                 variant="outline"
-                onClick={() => handleSocialLogin('facebook')}
+                onClick={() => handleSocialLogin("facebook")}
                 disabled={!!isLoading}
                 className="rounded-xl hover:bg-white/60 dark:hover:bg-zinc-800/60"
               >
-                {isLoading === 'facebook' ? (
+                {isLoading === "facebook" ? (
                   <Loader2 className="animate-spin" />
                 ) : (
                   <FaFacebook className="h-5 w-5 text-blue-600" />
@@ -206,22 +214,21 @@ export default function LoginForm() {
               </Button>
               <Button
                 variant="outline"
-                onClick={() => handleSocialLogin('apple')}
+                onClick={() => handleSocialLogin("apple")}
                 disabled={!!isLoading}
                 className="rounded-xl hover:bg-white/60 dark:hover:bg-zinc-800/60"
               >
-                {isLoading === 'apple' ? (
+                {isLoading === "apple" ? (
                   <Loader2 className="animate-spin" />
                 ) : (
                   <FaApple className="h-5 w-5" />
                 )}
               </Button>
-              
             </div>
           </motion.div>
         )}
 
-        {view === 'magiclink' && (
+        {view === "magiclink" && (
           <motion.div
             key="magiclink"
             initial={{ opacity: 0, y: 20 }}
@@ -238,7 +245,7 @@ export default function LoginForm() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setView('main')}
+              onClick={() => setView("main")}
               className="flex items-center gap-1 text-indigo-500 hover:text-indigo-600"
             >
               <ArrowLeft className="h-4 w-4" /> Back to login
@@ -269,7 +276,7 @@ export default function LoginForm() {
                 />
                 <LoadingButton
                   type="submit"
-                  loading={isLoading === 'magiclink'}
+                  loading={isLoading === "magiclink"}
                   className="
                     w-full rounded-xl
                     bg-gradient-to-r from-indigo-500 to-purple-600

@@ -1,38 +1,54 @@
-# Dockerfile
-
-# --- Build Stage ---
-FROM node:20-alpine AS base
+# 1. Install dependencies only when needed
+FROM node:20-alpine AS deps
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-RUN npm install
+COPY package.json package-lock.json* ./
+COPY prisma ./prisma/
+RUN npm ci
 
-# Copy code yote
+# 2. Rebuild the source code
+FROM node:20-alpine AS builder
+RUN apk add --no-cache build-base vips-dev libc6-compat
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Generate Prisma Client
 RUN npx prisma generate
 
-# Build the application with secret
-RUN --mount=type=secret,id=dotenv,target=/app/.env \
-    export $(cat /app/.env | xargs) && \
+# BUILD THE PROJECT HERE
+# We add the placeholders here so Next.js doesn't crash during build analysis
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN RESEND_API_KEY="placeholder" \
+    NEXTAUTH_SECRET="placeholder" \
+    PUSHER_APP_ID="placeholder" \
+    NEXT_PUBLIC_PUSHER_KEY="placeholder" \
+    PUSHER_SECRET="placeholder" \
+    DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder" \
     npm run build
 
-# --- Production/Runner Stage ---
+# 3. Production image
 FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy 'build output' na 'dependencies'
-COPY --from=base /app/node_modules ./node_modules
-COPY --from=base /app/.next ./.next
-COPY --from=base /app/public ./public
-COPY --from=base /app/package.json ./package.json
+# Create user/group first
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-RUN npm install pm2 -g
+# Copy files from builder
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+
+USER nextjs
 
 EXPOSE 3000
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
-CMD ["pm2-runtime", "npm", "--", "start"]
+CMD ["node", "server.js"]

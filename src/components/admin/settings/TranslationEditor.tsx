@@ -1,44 +1,44 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import { useToast } from "@/components/ui/use-toast"
-import { useRouter } from "next/navigation"
-import { Label } from "@/components/ui/label"
-import { Loader2, Languages, Info } from "lucide-react"
-import { type Translation } from "@prisma/client"
-import { locales } from "@/i18n/config"
+} from "@/components/ui/accordion";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import { Label } from "@/components/ui/label";
+import { Loader2, Languages, Info } from "lucide-react";
+import { type Translation } from "@prisma/client";
+import { locales } from "@/i18n/config";
 import {
   formatTranslationKey,
   translationKeyDescriptions,
-} from "@/lib/translation-keys"
-import { Textarea } from "@/components/ui/textarea"
-import { motion } from "framer-motion"
-import { Badge } from "@/components/ui/badge"
+} from "@/lib/translation-keys";
+import { Textarea } from "@/components/ui/textarea";
+import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
-type GroupedTranslations = Record<string, Translation[]>
+type GroupedTranslations = Record<string, Translation[]>;
 
 export default function TranslationEditor({
   initialTranslations,
 }: {
-  initialTranslations: GroupedTranslations
+  initialTranslations: GroupedTranslations;
 }) {
-  const [translations, setTranslations] = useState(initialTranslations)
-  const [savingKey, setSavingKey] = useState<string | null>(null)
-  const { toast } = useToast()
-  const router = useRouter()
+  const [translations, setTranslations] = useState(initialTranslations);
+  const [savingKey, setSavingKey] = useState<string | null>(null);
+  const { toast } = useToast();
+  const router = useRouter();
 
   const handleInputChange = (
     namespace: string,
@@ -50,19 +50,19 @@ export default function TranslationEditor({
       ...prev,
       [namespace]: prev[namespace].map((group) => {
         if (group.key === key && group.locale === locale) {
-          return { ...group, value }
+          return { ...group, value };
         }
-        return group
+        return group;
       }),
-    }))
-  }
+    }));
+  };
 
   const getTranslation = (
     namespace: string,
     key: string,
     locale: string
   ): Translation => {
-    const group = translations[namespace]
+    const group = translations[namespace];
     return (
       group.find((t) => t.key === key && t.locale === locale) || {
         id: `${key}-${locale}`,
@@ -70,56 +70,56 @@ export default function TranslationEditor({
         locale,
         value: "",
       }
-    )
-  }
+    );
+  };
 
   const handleSaveNamespace = async (namespace: string) => {
-    setSavingKey(namespace)
-    const namespaceTranslations = translations[namespace]
+    setSavingKey(namespace);
+    const namespaceTranslations = translations[namespace];
 
     try {
       const payload = namespaceTranslations.map((t) => ({
         key: t.key,
         locale: t.locale,
         value: t.value,
-      }))
+      }));
 
       const response = await fetch("/api/translations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
-      })
+      });
 
-      if (!response.ok) throw new Error("Failed to save.")
+      if (!response.ok) throw new Error("Failed to save.");
 
       toast({
         title: "✅ Success!",
         description: `Translations for '${namespace}' saved.`,
-      })
-      router.refresh()
-    } catch  {
+      });
+      router.refresh();
+    } catch {
       toast({
         variant: "destructive",
         title: "⚠ Error",
         description: `Could not save translations.`,
-      })
+      });
     } finally {
-      setSavingKey(null)
+      setSavingKey(null);
     }
-  }
+  };
 
   const shouldUseTextarea = (key: string): boolean => {
-    const lowerCaseKey = key.toLowerCase()
+    const lowerCaseKey = key.toLowerCase();
     return (
       lowerCaseKey.includes("description") ||
       lowerCaseKey.includes("subtitle") ||
       lowerCaseKey.includes("content")
-    )
-  }
+    );
+  };
 
   const uniqueKeysInNamespace = (namespace: string) => [
     ...new Set(translations[namespace].map((t) => t.key)),
-  ]
+  ];
 
   return (
     <Accordion
@@ -171,10 +171,10 @@ export default function TranslationEditor({
                             namespace,
                             key,
                             locale
-                          )
+                          );
                           const InputComponent = shouldUseTextarea(key)
                             ? Textarea
-                            : Input
+                            : Input;
 
                           return (
                             <motion.div
@@ -203,7 +203,7 @@ export default function TranslationEditor({
                                 placeholder={`Enter ${locale.toUpperCase()} translation...`}
                               />
                             </motion.div>
-                          )
+                          );
                         })}
                       </div>
                     </motion.div>
@@ -235,5 +235,5 @@ export default function TranslationEditor({
           </AccordionItem>
         ))}
     </Accordion>
-  )
+  );
 }
