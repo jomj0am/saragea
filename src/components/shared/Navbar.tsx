@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Menu,
   Building2,
@@ -12,46 +12,58 @@ import {
   Landmark,
   LogOut,
   LogIn,
-  UserPlus
-} from "lucide-react"
-import { useSession, signOut } from "next-auth/react"
-import { useEffect, useState } from "react"
-import UserNav from "./UserNav"
-import CartNav from "./CartNav"
-import LanguageSwitcher from "./LanguageSwitcher"
-import { ThemeSwitcher } from "./ThemeSwitcher"
-import { motion } from "framer-motion"
-import { useAuthModalStore } from "@/store/auth-modal-store"
-import { useTranslations } from "next-intl"
+  UserPlus,
+} from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
+import UserNav from "./UserNav";
+import CartNav from "./CartNav";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { ThemeSwitcher } from "./ThemeSwitcher";
+import { motion } from "framer-motion";
+import { useAuthModalStore } from "@/store/auth-modal-store";
+import { useTranslations } from "next-intl";
 
 export default function Navbar() {
-  const { data: session, status } = useSession()
-  const [scrolled, setScrolled] = useState(false)
-  const { openModal } = useAuthModalStore()
-  const t = useTranslations("Navbar")
+  const { data: session, status } = useSession();
+  const [scrolled, setScrolled] = useState(false);
+  const { openModal } = useAuthModalStore();
+  const t = useTranslations("Navbar");
 
   const navLinks = [
     { href: "/", label: t("home"), icon: Home, color: "text-blue-500" },
-    { href: "/properties", label: t("properties"), icon: Landmark, color: "text-emerald-500" },
+    {
+      href: "/properties",
+      label: t("properties"),
+      icon: Landmark,
+      color: "text-emerald-500",
+    },
     { href: "/about", label: t("about"), icon: Info, color: "text-purple-500" },
-    { href: "/contact", label: t("contact"), icon: Phone, color: "text-pink-500" },
-  ]
+    {
+      href: "/contact",
+      label: t("contact"),
+      icon: Phone,
+      color: "text-pink-500",
+    },
+  ];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300
-        ${scrolled
-          ? "border-b border-border/40 bg-background/80 backdrop-blur-lg"
-          : "border-b border-transparent bg-transparent"}
+        ${
+          scrolled
+            ? "border-b border-border/40 bg-background/80 backdrop-blur-lg"
+            : "border-b border-transparent bg-transparent"
+        }
       `}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+      <div className="container max-w-[82rem] md:px-8 mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link
           href="/"
@@ -72,7 +84,11 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6">
           {navLinks.map(({ href, label }) => (
-            <motion.div key={href} whileHover={{ y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
+            <motion.div
+              key={href}
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <Link
                 href={href}
                 className="relative text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -97,7 +113,9 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="hidden sm:flex items-center gap-2">
-              <Button variant="ghost" onClick={() => openModal("login")}>Log In</Button>
+              <Button variant="ghost" onClick={() => openModal("login")}>
+                Log In
+              </Button>
               <Button onClick={() => openModal("register")}>Sign Up</Button>
             </div>
           )}
@@ -122,7 +140,10 @@ export default function Navbar() {
               >
                 {/* Top section */}
                 <div className="p-6 space-y-8">
-                  <Link href="/" className="flex items-center gap-2 font-extrabold text-lg tracking-tight">
+                  <Link
+                    href="/"
+                    className="flex items-center gap-2 font-extrabold text-lg tracking-tight"
+                  >
                     <Building2 className="h-6 w-6 text-primary" />
                     <span className="bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
                       SARAGEA
@@ -183,5 +204,5 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }

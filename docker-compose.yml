@@ -6,14 +6,22 @@ services:
     restart: always
     environment:
       # Matches your .env: postgresql://saragea:jomjoam12@...
+<<<<<<< HEAD
       POSTGRES_USER: sarageaaaa
+=======
+      POSTGRES_USER: saragea
+>>>>>>> a37cdab (.)
       POSTGRES_PASSWORD: jomjoam12
       POSTGRES_DB: saragea
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       # Maps host port 5434 to container port 5432 (Matches your local connection string preference)
+<<<<<<< HEAD
       - "5432:5432"
+=======
+      - "5434:5432"
+>>>>>>> a37cdab (.)
 
     logging:
       driver: "json-file"
@@ -21,7 +29,76 @@ services:
         max-size: "10m"
         max-file: "3"
 
+<<<<<<< HEAD
 
 
 volumes:
   postgres_data:
+=======
+  # 2. Next.js App
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: saragea_app
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
+
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+        
+  #   environment:
+  #     # --- CORE ---
+  #     # Note: Inside Docker, we use the service name 'db' and the internal port '5432'
+  #     DATABASE_URL: "postgresql://saragea:jomjoam12@db:5432/saragea?schema=public"
+  #     NODE_ENV: "production"
+      
+  #     # --- AUTH ---
+  #     NEXTAUTH_URL: "http://localhost:3000" # Change to https://yourdomain.com in production
+  #     # I generated a new random string for you here, or use: openssl rand -base64 32
+  #     NEXTAUTH_SECRET: "J/g7+sL8/dK9+lM5/nQ3+rT1/uV4+wX6/yZ8+aB0+cD=" 
+
+  #     # --- ADMIN SEEDING ---
+  #     ADMIN_EMAIL: "admin@example.com"
+  #     ADMIN_PASSWORD: "pass123"
+  #     CRON_SECRET: "16721e997621df4fcb7fabf2c0e9afc95ee0da47eeb856f87c12f3564565737a"
+
+  #     # --- CLOUDINARY ---
+  #     CLOUDINARY_CLOUD_NAME: "dvvugtust"
+  #     CLOUDINARY_API_KEY: "887781644294718"
+  #     CLOUDINARY_API_SECRET: "nymIO3895o7uAybGOBycS87eZDA"
+  #     # Build-time public vars (Note: Ideally these are set during build, but Next.js runtime can pick them up)
+  #     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: "dvvugtust"
+  #     # You had a different key in your snippet (141...), verify which one is correct. I used the standard one here:
+  #     NEXT_PUBLIC_CLOUDINARY_API_KEY: "887781644294718" 
+
+  #     # --- PUSHER ---
+  #     PUSHER_APP_ID: "2050065"
+  #     PUSHER_SECRET: "d647f3dc85a0d4c90ad0"
+  #     PUSHER_CLUSTER: "ap2"
+  #     NEXT_PUBLIC_PUSHER_KEY: "ef4a256a393b7879b2f5"
+
+  #     # --- EMAIL (RESEND) ---
+  #     RESEND_API_KEY: "re_53vVZ7yw_GmUN9iPDrQTQdWQdHs7pLejs"
+  #     EMAIL_FROM: "SARAGEA Appartments <noreply@yourdomain.com>"
+
+  #     # --- MAPS ---
+  #     NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: "pk.xxxxxxxxxxxxxx"
+
+  #     # --- SOCIAL (Placeholders - Configure in Admin Panel or replace here) ---
+  #     GOOGLE_CLIENT_ID: ""
+  #     GOOGLE_CLIENT_SECRET: ""
+  #     FACEBOOK_CLIENT_ID: ""
+  #     FACEBOOK_CLIENT_SECRET: ""
+  #     APPLE_ID: ""
+  #     APPLE_CLIENT_SECRET: ""
+
+volumes:
+  postgres_data:
+>>>>>>> a37cdab (.)

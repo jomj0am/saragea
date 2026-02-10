@@ -77,7 +77,11 @@ export default function ShopByLifestyleSection({
         </div>
 
         {/* Desktop grid */}
+<<<<<<< HEAD
         <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+=======
+        <div className="hidden max-w-[84rem] mx-auto md:px-12 px-6 md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+>>>>>>> a37cdab (.)
           {displayCategories.map((category) => (
             <LifestyleCard key={category.titleKey} category={category} t={t} />
           ))}

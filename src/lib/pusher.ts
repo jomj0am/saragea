@@ -21,6 +21,7 @@ export const getPusherServer = (config?: PusherConfig) => {
   const cluster = config?.cluster || process.env.PUSHER_CLUSTER || "ap2";
 
   // Prevent crashing during build or if config is missing
+<<<<<<< HEAD
   if (
     !appId ||
     appId === "placeholder" ||
@@ -29,6 +30,9 @@ export const getPusherServer = (config?: PusherConfig) => {
     !secret ||
     secret === "placeholder"
   ) {
+=======
+  if (!appId || appId === "placeholder" || !key || key === "placeholder" || !secret || secret === "placeholder") {
+>>>>>>> a37cdab (.)
     return null;
   }
 
@@ -54,4 +58,8 @@ export const getPusherClient = () => {
   }
 
   return new PusherClient(key, { cluster });
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> a37cdab (.)

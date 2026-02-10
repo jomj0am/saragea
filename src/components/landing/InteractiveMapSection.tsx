@@ -55,7 +55,11 @@ export default function InteractiveMapSection() {
         </div>
 
         {/* Map Container */}
+<<<<<<< HEAD
         <div className="h-[600px] w-full  overflow-hidden shadow-2xl  dark:border-slate-800 relative group">
+=======
+        <div className="md:h-[600px] h-[400px] w-full  overflow-hidden shadow-2xl  dark:border-slate-800 relative group">
+>>>>>>> a37cdab (.)
           {loading && (
             <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm">
               <Loader2 className="h-10 w-10 animate-spin text-primary" />
@@ -143,8 +147,15 @@ export default function InteractiveMapSection() {
           </Map>
 
           {/* Footer Overlay */}
+<<<<<<< HEAD
           <div className="absolute bottom-5 left-5 z-10 bg-white/80 dark:bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 shadow-lg text-xs font-medium">
             Found {locations.length} Properties
+=======
+          <div className="absolute max-w-5xl bg-amber-400 mx-auto bottom-5 left-5 z-10 w-full">
+            <div className=" bg-white/80 w-fit dark:bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 shadow-lg text-xs font-medium">
+              Found {locations.length} Properties
+            </div>
+>>>>>>> a37cdab (.)
           </div>
         </div>
       </div>

@@ -46,16 +46,18 @@ export default function FinancialChart({ data }: FinancialChartProps) {
                     tickFormatter={(value) => formatCurrency(value as number)}
                 />
                 <Tooltip
-                    // --- REKEBISHO #4: Boresha 'Tooltip' ---
                     contentStyle={{
                         backgroundColor: 'hsl(var(--background))',
                         border: '1px solid hsl(var(--border))',
                         borderRadius: '0.5rem',
                     }}
                     labelStyle={{ fontWeight: 'bold' }}
-                    // 'formatter' inabaki kama ilivyo, lakini sasa ni 'type-safe'
-                    formatter={(value: number, name: string) => [formatCurrency(value), name.charAt(0).toUpperCase() + name.slice(1)]}
+                    formatter={(value: number | undefined, name: string | undefined) => [
+                        formatCurrency(value ?? 0),
+                        (name ?? '').charAt(0).toUpperCase() + (name ?? '').slice(1)
+                    ]}
                 />
+
                 <Legend iconType="circle" iconSize={10} />
                 <Bar dataKey="revenue" fill="#22c55e" name="Revenue" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="expenses" fill="#ef4444" name="Expenses" radius={[4, 4, 0, 0]} />

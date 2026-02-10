@@ -1,6 +1,10 @@
 generator client {
   provider      = "prisma-client-js"
+<<<<<<< HEAD
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+=======
+  binaryTargets = ["native", "debian-openssl-3.0.x", "debian-openssl-1.1.x", "linux-musl-openssl-3.0.x"]
+>>>>>>> a37cdab (.)
 }
 
 datasource db {
@@ -276,6 +280,7 @@ model Notification {
   user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+<<<<<<< HEAD
 // Add this model
 model AuditLog {
   id        String   @id @default(cuid())
@@ -286,6 +291,17 @@ model AuditLog {
   details   String // Human readable description
   ipAddress String?
   createdAt DateTime @default(now())
+=======
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String
+  resource  String
+  details   String
+  ipAddress String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+>>>>>>> a37cdab (.)
 }
 
 enum TicketStatus {
